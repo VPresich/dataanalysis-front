@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 6px;
+  row-gap: 12px;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.wrapper {
+  font-display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  color: var(--default);
+  background-color: transparent;
+}
+
+.btnTrackNum {
+  width: 100px;
+}
+
+.dropdownTrackNum {
+  width: 100px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.dropdownMultyTrackNum {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.searchWrapper {
+  width: 150px;
+}
+
+.timeFormWrapper {
+  width: 350px;
+}
+
+.btnReset {
+  width: 80px;
+  height: 50px;
+}
