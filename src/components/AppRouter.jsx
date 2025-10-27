@@ -25,7 +25,6 @@ function AppRouter() {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/teachers" element={<Teachers />} /> */}
         <Route path="/data" element={<DataAnalysis />} />
         <Route path="/hough" element={<HoughTransform />} />
         <Route path="/hough3d" element={<Hough3DTransform />} />
