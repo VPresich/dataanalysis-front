@@ -1,11 +1,12 @@
 import { useForm, FormProvider, Controller } from "react-hook-form";
 import Button from "../../../UI/Button/Button";
+import IconButton from "../../../UI/IconButton/IconButton";
 import { feedbackSchema } from "./feedbackSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./LoginForm.module.css";
 import Input from "../../../UI/Input/Input";
 
-export default function LoginForm({ handleLogin }) {
+export default function LoginForm({ handleLogin, onForgotPassword = null }) {
   const methods = useForm({
     resolver: yupResolver(feedbackSchema),
     defaultValues: {
@@ -28,7 +29,7 @@ export default function LoginForm({ handleLogin }) {
             <h3 className={css.title}>Log In</h3>
             <p className={css.text}>
               Welcome back! Please enter your credentials to access your account
-              and continue your search for an teacher.
+              and continue data analysis.
             </p>
           </div>
           <div className={css.inputsWrapper}>
@@ -47,6 +48,17 @@ export default function LoginForm({ handleLogin }) {
               )}
             />
           </div>
+          {/* Forgot password link */}
+          <div className={css.forgotWrapper}>
+            <IconButton
+              iconName="icon-log-in-out"
+              theme="green"
+              onClick={onForgotPassword}
+            >
+              Forgot password?
+            </IconButton>
+          </div>
+
           <Button type="submit" btnAuxStyles={css.btnAuxStyles}>
             Log in
           </Button>

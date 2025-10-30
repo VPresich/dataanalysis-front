@@ -2,17 +2,16 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { errNotify } from "../../../auxiliary/notification/notification";
 import { ERR_LOGIN } from "../Forms/constants";
-import iconsPath from "../../../assets/img/icons.svg";
 import { selectIsLoggedIn, selectTheme } from "../../../redux/auth/selectors";
 import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
 import LoginForm from "../Forms/LoginForm/LoginForm";
+import ForgotPasswordForm from "../Forms/ForgotPasswordForm/ForgotPasswordForm";
 import { logOut, logIn } from "../../../redux/auth/operations";
-import css from "./AuthButton.module.css";
-
-import clsx from "clsx";
+import IconButton from "../../UI/IconButton/IconButton";
 
 export default function AuthButton({ children, handleClick }) {
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showForgotForm, setShowForgotForm] = useState(false);
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -32,6 +31,7 @@ export default function AuthButton({ children, handleClick }) {
       .unwrap()
       .then(() => {
         setShowLoginForm(false);
+        setShowForgotForm(false);
         handleClick && handleClick();
       })
       .catch(() => {
@@ -43,24 +43,36 @@ export default function AuthButton({ children, handleClick }) {
     setShowLoginForm(false);
   };
 
+  const handleForgotPasswordClose = () => {
+    setShowForgotForm(false);
+    setShowLoginForm(true);
+  };
+
+  const handleForgotPasswordOpen = () => {
+    setShowLoginForm(false);
+    setShowForgotForm(true);
+  };
+
   return (
     <div>
-      <button className={clsx(css.btn, css[theme])} onClick={handleButton}>
-        <span className={css.iconContainer}>
-          <svg
-            className={clsx(css.icon, css[theme])}
-            width="20"
-            height="20"
-            aria-label="login-logout icon"
-          >
-            <use href={`${iconsPath}#icon-log-in-out`} />
-          </svg>
-        </span>
-        <span className={css.txtBtn}>{children}</span>
-      </button>
+      <IconButton
+        iconName="icon-log-in-out"
+        theme={theme}
+        onClick={handleButton}
+      >
+        {children}
+      </IconButton>
       {showLoginForm && (
         <ModalWrapper onClose={handleCloseLogin}>
-          <LoginForm handleLogin={handleLogin} />
+          <LoginForm
+            handleLogin={handleLogin}
+            onForgotPassword={handleForgotPasswordOpen}
+          />
+        </ModalWrapper>
+      )}
+      {showForgotForm && (
+        <ModalWrapper onClose={handleForgotPasswordClose}>
+          <ForgotPasswordForm onBack={handleForgotPasswordClose} />
         </ModalWrapper>
       )}
     </div>

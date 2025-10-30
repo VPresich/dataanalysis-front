@@ -1,0 +1,72 @@
+.btn {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  gap: 8px;
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon {
+  fill: transparent;
+  stroke: var(--default);
+}
+
+.icon.yellow {
+  stroke: var(--yellow);
+}
+
+.icon.green {
+  stroke: var(--green);
+}
+
+.icon.blue {
+  stroke: var(--blue);
+}
+
+.icon.pink {
+  stroke: var(--pink);
+}
+
+.icon.red {
+  stroke: var(--red);
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+}
+
+.txtBtn {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--primary);
+  background-color: transparent;
+}
+
+.btn.default:hover {
+  color: var(--default);
+}
+
+.btn.yellow:hover {
+  color: var(--yellow);
+}
+
+.btn.green:hover {
+  color: var(--green);
+}
+
+.btn.blue:hover {
+  color: var(--blue);
+}
+
+.btn.red:hover {
+  color: var(--red);
+}
+
+.btn.pink:hover {
+  color: var(--pink);
+}
