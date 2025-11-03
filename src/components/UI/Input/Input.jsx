@@ -1,9 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import css from "./Input.module.css";
 
-const Input = ({ name, onChange, value, placeholder, type }) => {
+function Input({ name, onChange, value, placeholder, type }, ref) {
   const [showPassword, setShowPassword] = useState(false);
   const {
     formState: { errors },
@@ -18,6 +18,7 @@ const Input = ({ name, onChange, value, placeholder, type }) => {
   return (
     <div className={css.wrapper}>
       <input
+        ref={ref}
         name={name}
         value={value}
         onChange={onChange}
@@ -39,6 +40,6 @@ const Input = ({ name, onChange, value, placeholder, type }) => {
       )}
     </div>
   );
-};
+}
 
-export default Input;
+export default React.forwardRef(Input);

@@ -36,9 +36,7 @@ export default function ForgotPasswordForm({ onBack }) {
               <Input {...field} placeholder="Email" type="text" />
             )}
           />
-
           <div className={css.btnGroup}>
-            {/* Back button link */}
             <div className={css.backWrapper}>
               <IconButton
                 iconName="icon-log-in-out"

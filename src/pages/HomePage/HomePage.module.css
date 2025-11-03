@@ -1,7 +1,7 @@
-.container {  
+.container {
   width: 100%;
-  padding-left: 64px;
-  padding-right: 64px;
+  padding-left: 60px;
+  padding-right: 60px;
   background-color: var(--white);
   display: flex;
   flex-direction: column;
@@ -192,7 +192,7 @@
     padding-bottom: 68px;
   }
 
-  .welcome {  
+  .welcome {
     display: flex;
     flex-direction: column;
   }

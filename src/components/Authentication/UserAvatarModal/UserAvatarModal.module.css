@@ -1,0 +1,26 @@
+.avatarContainer {
+  position: relative;
+  width: auto;
+  height: 50px;
+}
+
+.avatarBtn {
+  width: auto;
+  height: 50px;
+  border-radius: 30px;
+  padding: 2px 8px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+  background: var(--color-darkblue);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
