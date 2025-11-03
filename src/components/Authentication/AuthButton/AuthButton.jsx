@@ -34,8 +34,14 @@ export default function AuthButton({ children, handleClick }) {
         setShowForgotForm(false);
         handleClick && handleClick();
       })
-      .catch(() => {
-        errNotify(ERR_LOGIN);
+      .catch((err) => {
+        if (err.status === 403) {
+          errNotify(
+            "Please verify your email. Check your inbox for the confirmation link."
+          );
+        } else {
+          errNotify(ERR_LOGIN);
+        }
       });
   };
 

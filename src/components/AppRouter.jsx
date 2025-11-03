@@ -2,8 +2,6 @@ import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
-// const Teachers = lazy(() => import("../pages/Teachers/Teachers"));
-
 const DataAnalysis = lazy(() =>
   import("../pages/ExampleAnalysis/ExampleAnalysis")
 );
@@ -15,6 +13,12 @@ const Hough3DTransform = lazy(() =>
 );
 const Hough2DTrajectory = lazy(() =>
   import("../pages/Hough2DTrajectory/Hough2DTrajectory")
+);
+const VerifiedSuccess = lazy(() =>
+  import("../pages/VerifiedSuccessPage/VerifiedSuccessPage")
+);
+const VerifiedError = lazy(() =>
+  import("../pages/VerifiedErrorPage/VerifiedErrorPage")
 );
 
 import Loader from "../components/UI/Loader/Loader";
@@ -33,6 +37,8 @@ function AppRouter() {
           path="/favorites"
           element={<PrivateRoute redirectTo="/" component={<Favorites />} />}
         /> */}
+        <Route path="/verified-success" element={<VerifiedSuccess />} />
+        <Route path="/verified-error" element={<VerifiedError />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>

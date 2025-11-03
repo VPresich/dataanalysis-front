@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { errNotify } from "../../../auxiliary/notification/notification";
+import {
+  errNotify,
+  successNotify,
+} from "../../../auxiliary/notification/notification";
 import { ERR_REGISTRATION } from "../Forms/constants";
 import { register } from "../../../redux/auth/operations";
 import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
@@ -22,9 +25,14 @@ const RegistrationButton = ({ handleClick }) => {
   const handleRegistration = (values) => {
     dispatch(register(values))
       .unwrap()
-      .then(() => {
-        setShowRegisterForm(false);
-        handleClick && handleClick();
+      .then((response) => {
+        if (response.verifyRequired) {
+          successNotify("Verification email sent. Please check your inbox.");
+          setShowRegisterForm(false);
+        } else {
+          setShowRegisterForm(false);
+          handleClick && handleClick();
+        }
       })
       .catch((error) => {
         if (error.includes("409")) {

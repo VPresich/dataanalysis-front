@@ -8,7 +8,9 @@ export const register = createAsyncThunk(
     try {
       credentials.app = "dataanalysis";
       const resp = await axiosInst.post("auth/register", credentials);
-      setAuthHeader(resp.data.token);
+      if (resp.data.token) {
+        setAuthHeader(resp.data.token);
+      }
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
