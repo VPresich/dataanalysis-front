@@ -142,6 +142,14 @@ const DataFilters = () => {
           dropdownCSSClass={css.dropdownTrackNum}
         />
       </div>
+      <div className={css.searchWrapper}>
+        <p className={clsx(css.label, css[theme])}>Consistent Value:</p>
+        <SearchForm
+          onSearch={handleSearch}
+          initValue={immConsistentMaxValue}
+          placeholder="Input Value"
+        />
+      </div>
       <div className={css.wrapper}>
         <p className={clsx(css.label, css[theme])}>Experiment N:</p>
         <DropDownSelector
@@ -157,14 +165,6 @@ const DataFilters = () => {
           onChange={handleSensorNum}
           btnCSSClass={css.btnTrackNum}
           dropdownCSSClass={css.dropdownTrackNum}
-        />
-      </div>
-      <div className={css.searchWrapper}>
-        <p className={clsx(css.label, css[theme])}>IMM Consistent Value:</p>
-        <SearchForm
-          onSearch={handleSearch}
-          initValue={immConsistentMaxValue}
-          placeholder="Input Value"
         />
       </div>
       <div className={css.timeFormWrapper}>

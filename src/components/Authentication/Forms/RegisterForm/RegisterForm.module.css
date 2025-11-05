@@ -4,7 +4,7 @@
 
 .content {
   display: flex;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-family);
   flex-direction: column;
   row-gap: 40px;
 }

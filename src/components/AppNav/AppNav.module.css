@@ -15,7 +15,7 @@
 
 .item.active,
 .item:hover {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 767px) {

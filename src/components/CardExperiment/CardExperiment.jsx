@@ -1,86 +1,58 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import spritePath from "../../../img/sprite.svg";
-import { deleteExperiment } from "../../../redux/tasks/operations";
-import { selectTheme } from "../../../redux/auth/selectors";
+import { FaTrash, FaEdit } from "react-icons/fa";
+import DeleteExperimentModal from "../DeleteExperimentModal/DeleteExperimentModal";
+import { selectTheme } from "../../redux/auth/selectors";
 import clsx from "clsx";
-import EditCardModal from "../../EditCardModal/EditCardModal";
-import LinesEllipsis from "react-lines-ellipsis";
-import EllipsisText from "react-ellipsis-text";
-import styles from "./Card.module.css";
+
+import css from "./CardExperiment.module.css";
 
 export default function CardExperiment({ number, name, file_name, comment }) {
-  const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const [isModalEdit, setIsModalEdit] = useState(false);
+  const [isModalDelete, setIsModalDelete] = useState(false);
 
   const handleEdit = () => {
-    openModal();
+    setIsModalEdit(true);
+    setIsModalDelete(false);
+  };
+  const handleDelete = () => {
+    setIsModalEdit(false);
+    setIsModalDelete(true);
   };
 
-  const handleDelete = () => {
-    dispatch(deleteExperiment(number));
+  const closeModalEdit = () => {
+    setIsModalEdit(false);
+  };
+  const closeModalDelete = () => {
+    setIsModalDelete(false);
   };
 
   return (
-    <div className={clsx(styles.card, styles[theme])}>
-      <EllipsisText
-        text={name}
-        length={50}
-        className={clsx(styles.cardTitle, styles[theme])}
-      />
-
-      <LinesEllipsis
-        text={comment}
-        maxLine="2"
-        ellipsis="..."
-        trimRight
-        basedOn="letters"
-        component="p"
-        className={clsx(
-          styles.containerCard,
-          styles.cardDescription,
-          styles[theme]
-        )}
-      />
-
-      <div className={clsx(styles.cardLine, styles[theme])}></div>
-      <div className={styles.cardBottom}>
-        <div className={styles.cardInfo}></div>
-        <svg
-          className={clsx(styles.color, styles[theme])}
-          width="16"
-          height="16"
-          aria-label="btn icon"
-          onClick={handleEdit}
-        >
-          <use href={`${spritePath}#icon-pencil`} />
-        </svg>
-
-        <svg
-          className={clsx(styles.color, styles[theme])}
-          width="16"
-          height="16"
-          aria-label="btn icon"
-          onClick={handleDelete}
-        >
-          <use href={`${spritePath}#icon-trash`} />
-        </svg>
+    <div className={clsx(css.card, css[theme])}>
+      <div className={css.title}>
+        <span className={css.number}>{number}</span>
+        <div className={css.buttons}>
+          <span className={css.btn} onClick={handleEdit}>
+            <FaEdit className={clsx(css.icon, css[theme])} size={20} />
+          </span>
+          <span className={css.btn} onClick={handleDelete}>
+            <FaTrash className={clsx(css.icon, css[theme])} size={20} />
+          </span>
+        </div>
       </div>
-      {isModalOpen && (
-        <EditCardModal
-          onClose={closeModal}
-          card={{ number, name, file_name, comment }}
-        />
+
+      {/* Info section */}
+      <div className={css.info}>
+        <p className={css.name}>{name}</p>
+        <p className={css.fileName}>{file_name}</p>
+        <p className={css.comment}>{comment}</p>
+      </div>
+      {isModalDelete && (
+        <DeleteExperimentModal onClose={closeModalDelete} number={number} />
+      )}
+      {isModalEdit && (
+        <DeleteExperimentModal onClose={closeModalEdit} number={number} />
       )}
     </div>
   );

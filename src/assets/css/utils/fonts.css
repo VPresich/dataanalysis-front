@@ -1,24 +1,49 @@
 @font-face {
-  font-family: "Roboto Regular";
+  font-family: "Roboto";
   font-weight: 400;
-  src: url("../../../assets/fonts/static/Roboto-Regular.ttf") format("truetype");
+  src: url("../../fonts/Roboto-Bold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Roboto Medium";
+  font-family: "Roboto";
   font-weight: 500;
-  src: url("../../../assets/fonts/static/Roboto-Medium.ttf") format("truetype");
+  src: url("../../assets/fonts/Roboto-Medium.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Roboto Bold";
+  font-family: "Roboto";
   font-weight: 700;
-  src: url("../../../assets/fonts/static/Roboto-Bold.ttf") format("truetype");
+  src: url("../../assets/fonts/Roboto-Bold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Roboto Italic";
+  font-family: "Roboto";
   font-weight: 400;
   font-style: italic;
-  src: url("../../../assets/fonts/static/Roboto-Italic.ttf") format("truetype");
+  src: url("../../assets/fonts/Roboto-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-weight: 400;
+  src: url("../../fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-weight: 500;
+  src: url("../../fonts/Poppins-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-weight: 500;
+  font-style: italic;
+  src: url("../../fonts/Poppins-MediumItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-weight: 600;
+  src: url("../../fonts/Poppins-SemiBold.ttf") format("truetype");
 }

@@ -5,6 +5,7 @@ import { selectUserName } from "../../redux/auth/selectors";
 import AuthButton from "../../components/Authentication/AuthButton/AuthButton";
 import GoogleButton from "../Authentication/GoogleBtn/GoogleBtn";
 import RegistrationButton from "../Authentication/RegistrationButton/RegistrationButton";
+import SidebarButton from "../SideBarButton/SideBarButton";
 import clsx from "clsx";
 import css from "./AppMobileMenuContent.module.css";
 
@@ -25,6 +26,7 @@ const AppMobileMenuContent = ({ onMenuClick }) => {
               className={clsx(css.userName, css[theme])}
             >{`Hi, ${userName}`}</p>
             <AuthButton handleClick={onMenuClick}>Logout</AuthButton>
+            <SidebarButton handleClick={onMenuClick} />
           </>
         ) : (
           <>

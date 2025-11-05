@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import css from "./Input.module.css";
 
-function Input({ name, onChange, value, placeholder, type }, ref) {
+function Input({ name, onChange, value, placeholder, type, ...props }, ref) {
   const [showPassword, setShowPassword] = useState(false);
   const {
     formState: { errors },
@@ -25,6 +25,7 @@ function Input({ name, onChange, value, placeholder, type }, ref) {
         placeholder={placeholder}
         className={css.input}
         type={inputType}
+        {...props}
       />
       {type === "password" && (
         <span onClick={handleTooglePassword} className={css.eyeIcon}>

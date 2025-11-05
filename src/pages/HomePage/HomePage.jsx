@@ -81,15 +81,14 @@ export default function HomePage() {
           <section className={css.welcome}>
             <div className={css.info}>
               <h1 className={css.title}>
-                Unlock your potential with the best{" "}
-                <span className={clsx(css.accent, css[theme])}>data</span>{" "}
-                analysts.
+                Turn{" "}
+                <span className={clsx(css.accent, css[theme])}>raw data</span>{" "}
+                into knowledge
               </h1>
               <p className={css.text}>
-                Embark on an Exciting Data Analysis Journey with Expert Data
-                Analysts: Elevate your data proficiency to new heights by
-                connecting with highly skilled and experienced data
-                professionals.
+                Transform complex datasets into actionable insights. Explore and
+                understand your data, visualize it easily, and make informed
+                decisions.
               </p>
               <Button onClick={handleClick} btnAuxStyles={css.btnAuxStyles}>
                 Get started
@@ -104,23 +103,31 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className={clsx(css.statistics, css[theme])}>
-            <ul className={css.statisticsList}>
-              <li className={css.statisticsItem}>
-                <p className={css.itemValue}>32,000 +</p>
-                <p className={css.itemTitle}>Experienced tutors</p>
+          <section className={clsx(css.features, css[theme])}>
+            <ul className={css.featuresList}>
+              <li className={css.featureItem}>
+                <p className={css.itemTitle}>Add Data</p>
+                <p className={css.itemText}>
+                  Upload and manage your datasets effortlessly
+                </p>
               </li>
-              <li className={css.statisticsItem}>
-                <p className={css.itemValue}>300,000 +</p>
-                <p className={css.itemTitle}>5-star tutor reviews</p>
+              <li className={css.featureItem}>
+                <p className={css.itemTitle}>Analyze</p>
+                <p className={css.itemText}>
+                  Quickly explore and interpret your datasets
+                </p>
               </li>
-              <li className={css.statisticsItem}>
-                <p className={css.itemValue}>120 +</p>
-                <p className={css.itemTitle}>Subjects taught</p>
+              <li className={css.featureItem}>
+                <p className={css.itemTitle}>Visualize</p>
+                <p className={css.itemText}>
+                  Create clear charts and dashboards in seconds.
+                </p>
               </li>
-              <li className={css.statisticsItem}>
-                <p className={css.itemValue}>200 +</p>
-                <p className={css.itemTitle}>Tutor nationalities</p>
+              <li className={css.featureItem}>
+                <p className={css.itemTitle}>Decide</p>
+                <p className={css.itemText}>
+                  Make confident, data-driven business choices.
+                </p>
               </li>
             </ul>
           </section>

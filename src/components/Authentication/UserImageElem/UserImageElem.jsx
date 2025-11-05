@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import css from "./UserImageElem.module.css";
+import defImgUrl from "../../../assets/img/defaultUser.png";
 
 const UserImageElem = ({
   imgUrl,
@@ -8,14 +9,12 @@ const UserImageElem = ({
   isSmall = false,
 }) => {
   return (
-    <div
-      className={clsx(
-        css.container,
-        containerClass && containerClass,
-        isSmall && css.small
-      )}
-    >
-      <img className={css.img} src={imgUrl} alt={`Photo of ${altText}`} />
+    <div className={clsx(css.container, containerClass, isSmall && css.small)}>
+      <img
+        className={css.img}
+        src={imgUrl || defImgUrl}
+        alt={altText ? `Photo of ${altText}` : "User photo"}
+      />
     </div>
   );
 };

@@ -29,37 +29,37 @@
   max-width: 548px;
   font-weight: 500;
   font-size: 48px;
-  line-height: 1.17;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--primary);
   margin-bottom: 32px;
 }
 
 .accent {
+  font-weight: 500;
   font-style: italic;
-  font-weight: 400;
-  background-color: var(--default-accent);
+  color: var(--default-accent);
   border-radius: 4px;
 }
 
 .accent.yellow {
-  background-color: var(--yellow-accent);
+  color: var(--yellow-accent);
 }
 
 .accent.green {
-  background-color: var(--green-accent);
+  color: var(--green-accent);
 }
 
 .accent.blue {
-  background-color: var(--blue-accent);
+  color: var(--blue-accent);
 }
 
 .accent.pink {
-  background-color: var(--pink-accent);
+  color: var(--pink-accent);
 }
 
 .accent.red {
-  background-color: var(--red-accent);
+  color: var(--red-accent);
 }
 
 .text {
@@ -85,7 +85,7 @@
   border-radius: 30px;
 }
 
-.statistics {
+.features {
   border: 1.5px dashed var(--default);
   border-image-width: 10px;
   border-radius: 30px;
@@ -95,37 +95,38 @@
   padding-right: 16px;
 }
 
-.statistics.yellow {
+.features.yellow {
   border-color: var(--yellow);
 }
 
-.statistics.green {
+.features.green {
   border-color: var(--green);
 }
 
-.statistics.blue {
+.features.blue {
   border-color: var(--blue);
 }
 
-.statistics.pink {
+.features.pink {
   border-color: var(--pink);
 }
-.statistics.red {
+
+.features.red {
   border-color: var(--red);
 }
 
-.statisticsList {
+.featuresList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.statisticsItem {
+.featureItem {
   display: flex;
   gap: 16px;
 }
 
-.itemValue {
+.itemTitle {
   font-weight: 500;
   font-size: 28px;
   line-height: 1.14;
@@ -134,11 +135,11 @@
   text-align: right;
 }
 
-.itemTitle {
-  max-width: 96px;
+.itemText {
+  max-width: 100px;
   font-weight: 400;
   font-size: 14px;
-  line-height: 129%;
+  line-height: 1.29;
   letter-spacing: -0.02em;
   text-align: left;
   color: rgba(18, 20, 23, 0.7);
@@ -154,6 +155,7 @@
     padding-left: 16px;
     padding-right: 16px;
   }
+
   .title {
     font-size: 44px;
     width: 100%;
@@ -176,11 +178,11 @@
     width: 50%;
   }
 
-  .statisticsList {
+  .featuresList {
     justify-content: space-around;
   }
 
-  .itemValue {
+  .itemTitle {
     font-size: 24px;
     width: 130px;
   }
@@ -204,7 +206,7 @@
     width: 100%;
   }
 
-  .itemValue {
+  .itemTitle {
     font-size: 28px;
   }
 }

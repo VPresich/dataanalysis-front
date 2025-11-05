@@ -8,7 +8,7 @@ import iconsPath from "../../assets/img/icons.svg";
 import clsx from "clsx";
 import css from "./ColorSelector.module.css";
 
-const themes = ["yellow", "green", "blue", "pink", "red"];
+const themes = ["default", "green", "blue", "yellow", "red"];
 
 const ColorSelector = () => {
   const dispatch = useDispatch();

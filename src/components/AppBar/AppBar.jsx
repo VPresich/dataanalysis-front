@@ -6,7 +6,7 @@ import ColorSelector from "../ColorSelector/ColorSelector";
 import Logo from "../Logo/Logo";
 import css from "./AppBar.module.css";
 
-export default function AppBar({ handleSidebar }) {
+export default function AppBar() {
   const headerRef = useRef();
 
   const handleScroll = () => {
@@ -32,7 +32,7 @@ export default function AppBar({ handleSidebar }) {
       <Logo />
       <AppNav />
       <div className={css.wrapper}>
-        <AuthMenu handleSidebar={handleSidebar} />
+        <AuthMenu />
         <AppMobileMenuBtn />
         <ColorSelector />
       </div>

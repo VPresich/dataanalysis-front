@@ -1,44 +1,43 @@
 import { useForm, FormProvider, Controller } from "react-hook-form";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-// import clsx from "clsx";
+import clsx from "clsx";
 import { yupResolver } from "@hookform/resolvers/yup";
 import UserImageElem from "../../UserImageElem/UserImageElem";
 import Input from "../../../UI/Input/Input";
 import Button from "../../../UI/Button/Button";
-import UploadFileButton from "../../UploadFileButton/UploadFileButton";
+import UploadFileButton from "../../../UploadFileButton/UploadFileButton";
 import { feedbackSchema } from "./feedbackSchema";
 import { selectUser } from "../../../../redux/auth/selectors";
 import iconsPath from "../../../../assets/img/sprite.svg";
 import css from "./UserSettingsForm.module.css";
 
 const UserSettingsForm = ({ handleUserSave }) => {
-  const { name, email, avatarURL } = useSelector(selectUser);
-
-  const [avatarFile, setAvatarFile] = useState(null);
-  const [avatar, setAvatar] = useState(avatarURL);
+  const { name, email, theme, avatarURL } = useSelector(selectUser);
+  const [userAvatarURL, setUserAvatarURL] = useState(avatarURL);
 
   const methods = useForm({
     resolver: yupResolver(feedbackSchema),
     defaultValues: {
       name: name || email || "",
       email: email || "",
+      avatar: null,
     },
     shouldUnregister: true,
   });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, setValue, control } = methods;
 
   const onSubmit = async (values) => {
-    if (avatarFile) {
-      values.avatar = avatarFile;
-    }
     handleUserSave && handleUserSave(values);
   };
 
-  const handleEditAvatar = (newAvatarUrl, avatarFile) => {
-    setAvatarFile(avatarFile);
-    setAvatar(newAvatarUrl);
+  const handleEditAvatar = (file) => {
+    console.log("RESULT", file);
+    if (!file) return;
+    const previewUrl = URL.createObjectURL(file);
+    setValue("avatar", file, { shouldValidate: true });
+    setUserAvatarURL(previewUrl);
   };
 
   return (
@@ -48,37 +47,51 @@ const UserSettingsForm = ({ handleUserSave }) => {
           <div className={css.titleContainer}>
             <h3 className={css.title}>User info</h3>
             <div className={css.imgWrapper}>
-              <UserImageElem imgUrl={avatar} altText={`Photo of ${name}`} />
-              <UploadFileButton
-                icon={
-                  <svg
-                    className={css.btnIconContainer}
-                    aria-label="Upload icon"
+              <UserImageElem
+                imgUrl={userAvatarURL}
+                altText={`Photo of ${name}`}
+              />
+              <Controller
+                name="avatar"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <UploadFileButton
+                    icon={
+                      <svg
+                        className={css.btnIconContainer}
+                        aria-label="Upload icon"
+                      >
+                        <use
+                          className={clsx(css.btnIcon, css[theme])}
+                          href={`${iconsPath}#icon-upload`}
+                        />
+                      </svg>
+                    }
+                    className={clsx(css.uploadBtn, css[theme])}
+                    accept="image/png,image/jpeg,image/jpg,image/gif,image/webp"
+                    onFileSelect={(file) => {
+                      field.onChange(file);
+                      handleEditAvatar(file);
+                    }}
+                    error={fieldState?.error?.message}
                   >
-                    <use
-                      className={css.btnIcon}
-                      href={`${iconsPath}#icon-upload`}
-                    />
-                  </svg>
-                }
-                className={css.uploadBtn}
-                onFileSelect={handleEditAvatar}
-              >
-                Upload photo
-              </UploadFileButton>
+                    Upload photo
+                  </UploadFileButton>
+                )}
+              />
             </div>
           </div>
           <div className={css.inputsWrapper}>
             <Controller
               name="name"
-              control={methods.control}
+              control={control}
               render={({ field }) => (
                 <Input {...field} placeholder="Name" type="text" />
               )}
             />
             <Controller
               name="email"
-              control={methods.control}
+              control={control}
               render={({ field }) => (
                 <Input {...field} placeholder="Email" type="text" />
               )}

@@ -9,8 +9,8 @@
   height: 50px;
   border-radius: 30px;
   padding: 2px 8px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
+  font-family: var(--font-family);
+  font-weight: 600;
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;

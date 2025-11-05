@@ -6,8 +6,7 @@
 }
 
 .userName {
-  font-family: "Roboto", sans-serif;
-
+  font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
   line-height: 1.2;
@@ -19,61 +18,6 @@
 .btnsWrapper {
   display: flex;
   gap: 8px;
-}
-
-.sidebarBtn {
-  border-radius: 12px;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 12px;
-  padding-right: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--default);
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.sidebarBtn.yellow {
-  background-color: var(--yellow);
-}
-
-.sidebarBtn.green {
-  background-color: var(--green);
-}
-
-.sidebarBtn.blue {
-  background-color: var(--blue);
-}
-
-.sidebarBtn.red {
-  background-color: var(--red);
-}
-
-.sidebarBtn.pink {
-  background-color: var(--pink);
-}
-.sidebarBtn.yellow:hover {
-  background-color: var(--yellow-accent);
-}
-
-.sidebarBtn.green:hover {
-  background-color: var(--green-accent);
-}
-
-.sidebarBtn.blue:hover {
-  background-color: var(--blue-accent);
-}
-
-.sidebarBtn.red:hover {
-  background-color: var(--red-accent);
-}
-
-.sidebarBtn.pink:hover {
-  background-color: var(--pink-accent);
 }
 
 @media screen and (max-width: 767px) {

@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectSidebarOpen } from "../../redux/sidebar/selectors";
+import { closeSidebar } from "../../redux/sidebar/slice";
 import AppBar from "../AppBar/AppBar";
 import SideBar from "../SideBar/SideBar";
 import css from "./AppLayout.module.css";
 
 export default function AppLayout({ children }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+  const dispatch = useDispatch();
+  const isOpen = useSelector(selectSidebarOpen);
 
   return (
     <div className={css.container}>
-      <AppBar handleSidebar={toggleSidebar} />
-      <SideBar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      <AppBar />
+      <SideBar isOpen={isOpen} onClose={() => dispatch(closeSidebar())} />
       <div className={css.content}>{children}</div>
     </div>
   );

@@ -1,81 +1,61 @@
 .sidebar {
-  width: 260px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 24px 0px;
-  color: var(--white);
   position: fixed;
   top: 0;
-  left: -260px;
+  left: -360px;
+  width: 360px;
+  height: 100vh;
+  background-color: var(--white);
   transition: left 0.3s ease;
-  z-index: 1000;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 201;
 }
 
 .sidebar.open {
   left: 0;
 }
 
-.sidebar.default {
-  background-color: var(--default);
-}
-.sidebar.green {
-  background-color: var(--green);
-}
-.sidebar.red {
-  background-color: var(--red);
-}
-.sidebar.yellow {
-  background-color: var(--yellow);
-}
-.sidebar.blue {
-  background-color: var(--blue);
-}
-.sidebar.pink {
-  background-color: var(--pink);
+.content {
+  flex: 1;
+  padding-left: 24px;
+  padding-top: 80px;
+  padding-right: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
 }
 
-/* Заголовок сайдбара */
-.sidebarTitle {
-  font-size: 12px;
+.title {
+  font-family: var(--font-family);
+  font-size: 16px;
   letter-spacing: -0.02em;
   padding-left: 14px;
-  color: var(--white);
+  color: var(--text);
 }
 
-.closeBtn {
-  align-self: flex-end;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-.sidebarBackdrop {
+.backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(21, 21, 21, 0.5);
-  z-index: 900;
+  z-index: 200;
   display: none;
 }
 
-.sidebarBackdrop.open {
+.backdrop.open {
   display: block;
-}
-
-@media screen and (max-width: 768px) {
-  .sidebarBackdrop {
-    overflow-y: auto;
-  }
 }
 
 @media screen and (max-width: 375px) {
   .sidebar {
     width: 225px;
-    padding: 14px 0px;
+  }
+  .content {
+    padding: 0 14px;
   }
 }

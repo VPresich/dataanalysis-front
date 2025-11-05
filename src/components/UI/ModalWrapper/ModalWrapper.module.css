@@ -9,7 +9,7 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(8px);
-  z-index: 900;
+  z-index: 500;
 }
 
 .modal {
@@ -23,6 +23,7 @@
   position: relative;
   overflow-y: auto;
   max-height: 100vh;
+  z-index: 501;
 }
 
 .modal.graph {
@@ -44,7 +45,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 510;
 }
 
 .icon {
