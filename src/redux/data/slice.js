@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getAllData, getDataByNumber, getFilteredData } from "./operations";
+import { getNonameData } from "./operations";
 
 const analysisSlice = createSlice({
   name: "analysis",
@@ -18,6 +19,20 @@ const analysisSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
+      .addCase(getNonameData.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getNonameData.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = action.payload;
+      })
+      .addCase(getNonameData.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+
       .addCase(getAllData.pending, (state) => {
         state.isLoading = true;
         state.error = null;

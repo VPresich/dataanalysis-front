@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import TimeForm from "../TimeForm/TimeForm";
 import processData from "../../auxiliary/processData";
+import { getNonameData } from "../../redux/data/operations";
 import clsx from "clsx";
 import {
   // saveTrackNum,
@@ -59,6 +60,7 @@ const DataFilters = () => {
 
   const handleSensorNum = (sensorNum) => {
     dispatch(saveSensorNum(sensorNum));
+    // dispatch(getNonameData)
     dispatch(getFilteredData({ sensorNum, startTime, endTime }))
       .unwrap()
       .then((data) => {

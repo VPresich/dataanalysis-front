@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import authReducer from "../redux/auth/slice";
+import sourcesReducer from "../redux/datasources/slice";
 import analysisReducer from "../redux/data/slice";
 import dataFiltersReducer from "../redux/datafilters/slice";
 import houghReducer from "../redux/houghdata/slice";
@@ -27,6 +28,7 @@ const authPersistConfig = {
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    sources: sourcesReducer,
     analysis: analysisReducer,
     datafilters: dataFiltersReducer,
     hough: houghReducer,

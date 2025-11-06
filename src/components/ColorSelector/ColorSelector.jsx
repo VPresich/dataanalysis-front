@@ -21,7 +21,7 @@ const ColorSelector = () => {
   const handleThemeChange = (event) => {
     const selectedTheme = event.target.value.toLowerCase();
     dispatch(setTheme(selectedTheme));
-    dispatch(updateTheme({ color: selectedTheme }));
+    dispatch(updateTheme({ theme: selectedTheme }));
     setIsOpen(false);
   };
 

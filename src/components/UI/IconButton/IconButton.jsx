@@ -1,4 +1,6 @@
 import clsx from "clsx";
+import { useSelector } from "react-redux";
+import { selectTheme } from "../../../redux/auth/selectors";
 import PropTypes from "prop-types";
 import iconsPath from "../../../assets/img/icons.svg";
 import css from "./IconButton.module.css";
@@ -7,16 +9,11 @@ import css from "./IconButton.module.css";
  * Universal button component for authentication actions (Log in / Log out / Sign in with Google).
  *
  * @param {string} iconName - The name of the SVG icon (from icons.svg)
- * @param {string} theme - Current theme ("light" or "dark")
  * @param {function} onClick - Function to execute when button is clicked
  * @param {ReactNode} children - Button text (e.g., "Log In", "Log Out")
  */
-export default function IconButton({
-  iconName,
-  theme = "default",
-  onClick,
-  children,
-}) {
+export default function IconButton({ iconName, onClick, children }) {
+  const theme = useSelector(selectTheme);
   return (
     <button className={clsx(css.btn, css[theme])} onClick={onClick}>
       <span className={css.iconContainer}>

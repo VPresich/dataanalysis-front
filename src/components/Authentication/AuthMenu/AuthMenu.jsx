@@ -9,7 +9,6 @@ import RegistrationButton from "../RegistrationButton/RegistrationButton";
 import UserAvatarModal from "../UserAvatarModal/UserAvatarModal";
 import GoogleButton from "../GoogleBtn/GoogleBtn";
 import SidebarButton from "../../SideBarButton/SideBarButton";
-
 import css from "./AuthMenu.module.css";
 
 const AuthMenu = () => {

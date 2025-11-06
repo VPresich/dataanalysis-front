@@ -2,9 +2,10 @@ import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
-const DataAnalysis = lazy(() =>
+const ExampleAnalysis = lazy(() =>
   import("../pages/ExampleAnalysis/ExampleAnalysis")
 );
+// const DataAnalysis = lazy(() => import("../pages/DataAnalysis/DataAnalysis"));
 const HoughTransform = lazy(() =>
   import("../pages/HoughTransform/HoughTransform")
 );
@@ -29,7 +30,14 @@ function AppRouter() {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/data" element={<DataAnalysis />} />
+        <Route path="/data" element={<ExampleAnalysis />} />
+        {/* <Route
+          path="/data/:id"
+          element={
+            <PrivateRoute redirectTo="/data" component={<DataAnalysis />} />
+          }
+        /> */}
+        {/* <Route path="/data/:id" element={<DataAnalysis />} /> */}
         <Route path="/hough" element={<HoughTransform />} />
         <Route path="/hough3d" element={<Hough3DTransform />} />
         <Route path="/houghtracks" element={<Hough2DTrajectory />} />

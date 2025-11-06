@@ -63,7 +63,6 @@ const AddExperimentForm = ({ handleDataUpload }) => {
                 />
               )}
             />
-
             <Controller
               name="datafile"
               control={control}

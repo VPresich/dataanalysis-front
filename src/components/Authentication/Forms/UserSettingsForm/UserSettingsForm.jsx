@@ -8,6 +8,7 @@ import Input from "../../../UI/Input/Input";
 import Button from "../../../UI/Button/Button";
 import UploadFileButton from "../../../UploadFileButton/UploadFileButton";
 import { feedbackSchema } from "./feedbackSchema";
+import { getChangedFields } from "../../../../auxiliary/getChangedFields";
 import { selectUser } from "../../../../redux/auth/selectors";
 import iconsPath from "../../../../assets/img/sprite.svg";
 import css from "./UserSettingsForm.module.css";
@@ -22,6 +23,7 @@ const UserSettingsForm = ({ handleUserSave }) => {
       name: name || email || "",
       email: email || "",
       avatar: null,
+      password: "",
     },
     shouldUnregister: true,
   });
@@ -29,11 +31,15 @@ const UserSettingsForm = ({ handleUserSave }) => {
   const { handleSubmit, setValue, control } = methods;
 
   const onSubmit = async (values) => {
-    handleUserSave && handleUserSave(values);
+    const changedFields = getChangedFields(
+      values,
+      methods.formState.defaultValues
+    );
+    console.log("UserProfile", values, changedFields);
+    handleUserSave && handleUserSave(changedFields);
   };
 
   const handleEditAvatar = (file) => {
-    console.log("RESULT", file);
     if (!file) return;
     const previewUrl = URL.createObjectURL(file);
     setValue("avatar", file, { shouldValidate: true });
@@ -93,7 +99,14 @@ const UserSettingsForm = ({ handleUserSave }) => {
               name="email"
               control={control}
               render={({ field }) => (
-                <Input {...field} placeholder="Email" type="text" />
+                <Input {...field} placeholder="Email" type="text" disabled />
+              )}
+            />
+            <Controller
+              name="password"
+              control={methods.control}
+              render={({ field }) => (
+                <Input {...field} placeholder="Password" type="password" />
               )}
             />
           </div>

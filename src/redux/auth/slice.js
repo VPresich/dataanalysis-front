@@ -6,10 +6,16 @@ import {
   logOut,
   refreshUser,
   updateTheme,
+  updateUserProfile,
 } from "./operations";
 
 const initialState = {
-  user: { name: null, email: null, theme: "default", avatarURL: "" },
+  user: {
+    name: "noname user",
+    email: "noname@gmail.com",
+    theme: "default",
+    avatarURL: "",
+  },
   token: null,
   isLoggedIn: false,
   isRefreshing: true,
@@ -74,7 +80,11 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(logOut.fulfilled, (state) => {
-        state.user = { name: null, email: null, theme: "default" };
+        state.user = {
+          name: "noname",
+          email: "noname@gmail.com",
+          theme: "default",
+        };
         state.token = null;
         state.isLoggedIn = false;
         state.error = null;
@@ -107,6 +117,17 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(updateTheme.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+
+      .addCase(updateUserProfile.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.error = null;
+      })
+      .addCase(updateUserProfile.rejected, (state, action) => {
         state.error = action.payload;
       });
   },

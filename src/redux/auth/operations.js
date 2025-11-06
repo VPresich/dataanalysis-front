@@ -66,13 +66,47 @@ export const refreshUser = createAsyncThunk(
 );
 
 export const updateTheme = createAsyncThunk(
-  "users/themes",
+  "users/updateTheme",
   async (data, thunkAPI) => {
     try {
-      const response = await axiosInst.patch(`users/themes`, data);
+      const response = await axiosInst.patch("/users/themes", data);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.error("Failed to update theme:", error);
+      const message =
+        error.response?.data?.message || error.message || "Unknown error";
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const updateUserProfile = createAsyncThunk(
+  "users/updateProfile",
+  async (data, thunkAPI) => {
+    try {
+      let response;
+
+      if (data.avatar) {
+        const formData = new FormData();
+        Object.entries(data).forEach(([key, value]) => {
+          formData.append(key, value);
+        });
+
+        response = await axiosInst.patch("/users/profile", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      } else {
+        response = await axiosInst.patch("/users/profile", data, {
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+
+      return response.data;
+    } catch (error) {
+      console.error("Failed to update user profile:", error);
+      const message =
+        error.response?.data?.message || error.message || "Unknown error";
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
