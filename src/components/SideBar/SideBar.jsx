@@ -1,13 +1,14 @@
-import CardsList from "../CardsList/CardsList";
-import AddExperimentModal from "../AddExperimentModal/AddExperimentModal.jsx";
 import { useSelector } from "react-redux";
+import ExperimentCardsList from "../ExperimentCardsList/ExperimentCardsList.jsx";
+import AddExperiment from "../AddExperiment/AddExperiment.jsx";
 import { selectTheme } from "../../redux/auth/selectors";
+import { selectSources } from "../../redux/datasources/selectors.js";
 import clsx from "clsx";
 import { useRef } from "react";
 import css from "./SideBar.module.css";
-import cardsData from "../../data/data.js";
 
 export default function SideBar({ isOpen }) {
+  const sources = useSelector(selectSources);
   const theme = useSelector(selectTheme);
   const sidebarRef = useRef(null);
 
@@ -19,8 +20,8 @@ export default function SideBar({ isOpen }) {
       >
         <div className={css.content}>
           <p className={clsx(css.title, css[theme])}>My experiments</p>
-          <AddExperimentModal />
-          <CardsList cards={cardsData} />
+          <AddExperiment />
+          <ExperimentCardsList experiments={sources} />
         </div>
       </div>
     </>

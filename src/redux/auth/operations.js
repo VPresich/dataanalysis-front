@@ -92,9 +92,12 @@ export const updateUserProfile = createAsyncThunk(
           formData.append(key, value);
         });
 
-        response = await axiosInst.patch("/users/profile", formData, {
+        response = await axiosInst.patch(
+          "/users/profile",
+          formData /*, {
           headers: { "Content-Type": "multipart/form-data" },
-        });
+        }*/
+        );
       } else {
         response = await axiosInst.patch("/users/profile", data, {
           headers: { "Content-Type": "application/json" },

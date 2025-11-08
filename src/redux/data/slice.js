@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllData, getDataByNumber, getFilteredData } from "./operations";
-import { getNonameData } from "./operations";
+import { getDataBySource, getFilteredData } from "./operations";
+import { getNonameData, getNonameDataBySource } from "./operations";
 
 const analysisSlice = createSlice({
   name: "analysis",
@@ -33,30 +33,30 @@ const analysisSlice = createSlice({
         state.error = action.payload;
       })
 
-      .addCase(getAllData.pending, (state) => {
+      .addCase(getNonameDataBySource.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(getAllData.fulfilled, (state, action) => {
+      .addCase(getNonameDataBySource.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.items = action.payload;
       })
-      .addCase(getAllData.rejected, (state, action) => {
+      .addCase(getNonameDataBySource.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
 
-      .addCase(getDataByNumber.pending, (state) => {
+      .addCase(getDataBySource.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(getDataByNumber.fulfilled, (state, action) => {
+      .addCase(getDataBySource.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.items = action.payload;
       })
-      .addCase(getDataByNumber.rejected, (state, action) => {
+      .addCase(getDataBySource.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
@@ -70,7 +70,6 @@ const analysisSlice = createSlice({
         state.error = null;
         state.items = action.payload;
       })
-
       .addCase(getFilteredData.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;

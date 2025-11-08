@@ -21,10 +21,15 @@
   padding-right: 64px;
   border-radius: 30px;
   position: relative;
-  overflow-y: auto;
   max-height: 100vh;
   z-index: 501;
 }
+
+/* .content {
+  overflow-y: auto;
+  max-height: calc(100vh - 128px);
+  padding-right: 12px;
+} */
 
 .modal.graph {
   border-radius: 8px;

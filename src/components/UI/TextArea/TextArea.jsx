@@ -1,8 +1,12 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
+import clsx from "clsx";
 import css from "./TextArea.module.css";
 
-function TextArea({ name, onChange, value, placeholder, ...props }, ref) {
+function TextArea(
+  { name, onChange, value, placeholder, className, ...props },
+  ref
+) {
   const {
     formState: { errors },
   } = useFormContext();
@@ -15,7 +19,7 @@ function TextArea({ name, onChange, value, placeholder, ...props }, ref) {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className={css.input}
+        className={clsx(css.input, className)}
         {...props}
       />
       {errors[name] && (

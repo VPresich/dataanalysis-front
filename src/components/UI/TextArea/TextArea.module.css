@@ -3,12 +3,11 @@
 }
 
 .input {
+  font-family: inherit;
   width: 100%;
   border: 1px solid rgba(18, 20, 23, 0.1);
   border-radius: 12px;
   padding: 14px 14px 14px 18px;
-  /* height: 54px; */
-  font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
   line-height: 1.37;
@@ -22,6 +21,7 @@
 }
 
 .error {
+  font-family: inherit;
   position: absolute;
   bottom: -8px;
   left: 0;

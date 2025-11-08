@@ -5,7 +5,7 @@ const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const ExampleAnalysis = lazy(() =>
   import("../pages/ExampleAnalysis/ExampleAnalysis")
 );
-// const DataAnalysis = lazy(() => import("../pages/DataAnalysis/DataAnalysis"));
+const DataAnalysis = lazy(() => import("../pages/DataAnalysis/DataAnalysis"));
 const HoughTransform = lazy(() =>
   import("../pages/HoughTransform/HoughTransform")
 );
@@ -23,21 +23,37 @@ const VerifiedError = lazy(() =>
 );
 
 import Loader from "../components/UI/Loader/Loader";
-// import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./PrivateRoute";
+import RestrictedRoute from "./RestrictedRoute";
 
 function AppRouter() {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/data" element={<ExampleAnalysis />} />
-        {/* <Route
+        {/* <Route path="/example" element={<ExampleAnalysis />} /> */}
+        <Route
+          path="/example"
+          element={
+            <RestrictedRoute
+              redirectTo="/data"
+              component={<ExampleAnalysis />}
+            />
+          }
+        />
+        {/* <Route path="/data" element={<DataAnalysis />} /> */}
+        <Route
+          path="/data"
+          element={
+            <PrivateRoute redirectTo="/example" component={<DataAnalysis />} />
+          }
+        />
+        <Route
           path="/data/:id"
           element={
             <PrivateRoute redirectTo="/data" component={<DataAnalysis />} />
           }
-        /> */}
-        {/* <Route path="/data/:id" element={<DataAnalysis />} /> */}
+        />
         <Route path="/hough" element={<HoughTransform />} />
         <Route path="/hough3d" element={<Hough3DTransform />} />
         <Route path="/houghtracks" element={<Hough2DTrajectory />} />

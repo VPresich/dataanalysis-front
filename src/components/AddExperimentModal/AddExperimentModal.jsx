@@ -1,29 +1,21 @@
-import { useState } from "react";
-import Button from "../UI/Button/Button";
-import ModalWrapper from "../UI/ModalWrapper/ModalWrapper";
 import AddExperimentForm from "../AddExperimentForm/AddExperimentForm";
-import css from "./AddExperimentModal.module.css";
+import ModalWrapper from "../UI/ModalWrapper/ModalWrapper";
 
-export default function AddExperimentModal() {
-  const [showAddExperimentForm, setShowAddExperimentForm] = useState(false);
-
-  const handleAddClick = () => {
-    setShowAddExperimentForm(true);
-  };
-  const handleDataUpload = (values) => {
-    //Upload data
+export default function AddExperimentModal({ onClose }) {
+  const handleAddExperimentSubmit = (values) => {
     console.log(values);
-    setShowAddExperimentForm(false);
+    //  dispatch(addBoard(values))
+    //   .unwrap()
+    //   .then(result => {
+    //     dispatch(setActiveBoard(result._id));
+    //     navigate(`/home/${result._id}`);
+    //   });
+    onClose();
   };
 
   return (
-    <div className={css.userAvatarContainer}>
-      <Button onClick={handleAddClick}> + Add Data</Button>
-      {showAddExperimentForm && (
-        <ModalWrapper onClose={handleDataUpload}>
-          <AddExperimentForm handleDataUpload={handleDataUpload} />
-        </ModalWrapper>
-      )}
-    </div>
+    <ModalWrapper onClose={onClose}>
+      <AddExperimentForm onSubmitForm={handleAddExperimentSubmit} />
+    </ModalWrapper>
   );
 }

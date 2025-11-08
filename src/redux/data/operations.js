@@ -8,43 +8,49 @@ export const getNonameData = createAsyncThunk(
       const response = await axiosInst.get(`data/noname/data`);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const message =
+        error.response?.data?.message || error.message || "Unknown error";
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
 
-export const getAllData = createAsyncThunk(
-  "data/getAllData",
-  async (_, thunkAPI) => {
+export const getNonameDataBySource = createAsyncThunk(
+  "data/getNonameDataBySource",
+  async ({ sourceNumber }, thunkAPI) => {
     try {
-      const response = await axiosInst.get(`data`);
+      const response = await axiosInst.get(`data/noname/data/${sourceNumber}`);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const message =
+        error.response?.data?.message || error.message || "Unknown error";
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
 
-export const getDataByNumber = createAsyncThunk(
-  "data/getDataByNumber",
-  async (sensorNum, thunkAPI) => {
+export const getDataBySource = createAsyncThunk(
+  "sources/geDataBySource",
+  async ({ sourceNumber }, thunkAPI) => {
     try {
-      const response = await axiosInst.get(`data/${sensorNum}`);
+      const response = await axiosInst.get(`/data/${sourceNumber}`);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const message =
+        error.response?.data?.message || error.message || "Unknown error";
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
 
 export const getFilteredData = createAsyncThunk(
   "data/getFilteredData",
-  async ({ sensorNum, startTime, endTime }, thunkAPI) => {
+  async ({ sourceNumber, startTime, endTime }, thunkAPI) => {
     try {
       const params = {};
       if (startTime) params.startTime = startTime;
       if (endTime) params.endTime = endTime;
-      const response = await axiosInst.get(`data/${sensorNum}`, { params });
+      const response = await axiosInst.get(`data/${sourceNumber}`, { params });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

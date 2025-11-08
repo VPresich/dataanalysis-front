@@ -11,6 +11,7 @@ const dataFiltersSlice = createSlice({
     immConsistent: "All",
     immConsistentValues: generateImmConsistentValues(),
     immConsistentMaxValue: "0.0",
+    sourceNumber: null,
     sensorNum: 31,
     startTime: "",
     endTime: "",
@@ -27,6 +28,10 @@ const dataFiltersSlice = createSlice({
 
     saveSensorNum: (state, action) => {
       state.sensorNum = action.payload;
+    },
+
+    saveSourceNumber: (state, action) => {
+      state.sourceNumber = action.payload;
     },
 
     saveImmConsistent: (state, action) => {
@@ -56,6 +61,7 @@ const dataFiltersSlice = createSlice({
       state.trackNum = "All";
       state.immConsistent = "All";
       state.sensorNum = 31;
+      state.sourceNumber = 12;
       state.immConsistentMaxValue = "0.0";
       state.startTime = "";
       state.endTime = "";
@@ -72,6 +78,7 @@ export const {
   updateTrackNumbers,
   saveTime,
   setIs3D,
+  saveSourceNumber,
   resetDataFilters,
 } = dataFiltersSlice.actions;
 export default dataFiltersSlice.reducer;

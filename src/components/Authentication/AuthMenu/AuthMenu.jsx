@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-
+import { useLocation, matchPath } from "react-router-dom";
 import {
   selectIsLoggedIn,
   selectUserName,
@@ -14,13 +14,22 @@ import css from "./AuthMenu.module.css";
 const AuthMenu = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const userName = useSelector(selectUserName);
+
+  const location = useLocation();
+  const showSidebarButton =
+    matchPath("/example", location.pathname) ||
+    matchPath("/data", location.pathname) ||
+    matchPath("/example/:id", location.pathname) ||
+    matchPath("/data/:id", location.pathname);
+
   return (
     <div className={css.authPart}>
+      {showSidebarButton && <SidebarButton />}
       {isLoggedIn ? (
         <>
           <UserAvatarModal />
           <p className={css.userName}>{`Hi, ${userName}`}</p>
-          <SidebarButton />
+          {/* <SidebarButton /> */}
 
           <AuthButton>Logout</AuthButton>
         </>

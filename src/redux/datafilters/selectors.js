@@ -1,10 +1,15 @@
+import { createSelector } from "@reduxjs/toolkit";
+
 export const selectTrackNum = (state) => state.datafilters.trackNum;
 export const selectSensorNum = (state) => state.datafilters.sensorNum;
+export const selectSourceNum = (state) => state.datafilters.sourceNumber;
 export const selectTrackNumbers = (state) =>
   state.datafilters.trackNumbers || [];
 
-export const selectTrackNumbersForMultySelect = (state) =>
-  state.datafilters.trackNumbers.filter((track) => track !== "All") || [];
+export const selectTrackNumbersForMultySelect = createSelector(
+  [selectTrackNumbers],
+  (trackNumbers) => trackNumbers.filter((track) => track !== "All")
+);
 
 export const selectImmConsistent = (state) => state.datafilters.immConsistent;
 export const selectImmConsistentValues = (state) =>

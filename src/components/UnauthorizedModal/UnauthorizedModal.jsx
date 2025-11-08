@@ -1,30 +1,14 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import Button from "../UI/Button/Button";
-import css from "./UnauthorizedModal.module.css";
+import UnauthorizedForm from "../UnauthorizedForm/UnauthorizedForm";
+import ModalWrapper from "../UI/ModalWrapper/ModalWrapper";
 
-const UnauthorizedModal = ({ onClose }) => {
-  const { handleSubmit } = useForm();
-
-  const onSubmit = () => {
+export default function UnauthorizedModal({ onClose }) {
+  const handleUnauthorizedSubmit = (e) => {
+    e.preventDefault();
     onClose();
   };
-
   return (
-    <React.Fragment>
-      <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-        <div className={css.content}>
-          <div className={css.titleContainer}>
-            <h3 className={css.title}>Access Denied</h3>
-            <p className={css.text}>
-              This feature is only available for authorized users.
-            </p>
-          </div>
-          <Button type="submit">Close</Button>
-        </div>
-      </form>
-    </React.Fragment>
+    <ModalWrapper onClose={onClose}>
+      <UnauthorizedForm onSubmit={handleUnauthorizedSubmit} />
+    </ModalWrapper>
   );
-};
-
-export default UnauthorizedModal;
+}
