@@ -37,57 +37,58 @@ const AddExperimentForm = ({ onSubmitForm }) => {
       <form onSubmit={onSubmitForm} className={css.form}>
         <div className={css.content}>
           <div className={css.titleContainer}>
-            <h3 className={css.title}>Upload experiment data</h3>
+            <h3 className={css.title}>Upload experiment</h3>
             <p className={css.text}>
               Use this form to upload your source data file and provide relevant
               information about data.
             </p>
           </div>
+
+          <div className={css.filedataInfo}>
+            <p className={css.subTitle}>Choose data file</p>
+            <Controller
+              name="file_name"
+              control={control}
+              render={({ field, fieldState }) => (
+                <Input
+                  {...field}
+                  placeholder="File name"
+                  type="text"
+                  error={fieldState?.error?.message}
+                  readOnly
+                />
+              )}
+            />
+            <Controller
+              name="datafile"
+              control={control}
+              render={({ field, fieldState }) => (
+                <UploadFileButton
+                  icon={
+                    <svg
+                      className={css.btnIconContainer}
+                      aria-label="Upload icon"
+                    >
+                      <use
+                        className={clsx(css.btnIcon, css[theme])}
+                        href={`${iconsPath}#icon-upload`}
+                      />
+                    </svg>
+                  }
+                  className={clsx(css.uploadBtn, css[theme])}
+                  accept=".csv,text/plain"
+                  onFileSelect={(file) => {
+                    field.onChange(file);
+                    handleFileSelected(file);
+                  }}
+                  error={fieldState?.error?.message}
+                >
+                  Upload file
+                </UploadFileButton>
+              )}
+            />
+          </div>
           <div className={css.scrollableContent}>
-            <div className={css.filedataInfo}>
-              <p className={css.subTitle}>Choose data file</p>
-              <Controller
-                name="file_name"
-                control={control}
-                render={({ field, fieldState }) => (
-                  <Input
-                    {...field}
-                    placeholder="File name"
-                    type="text"
-                    error={fieldState?.error?.message}
-                    readOnly
-                  />
-                )}
-              />
-              <Controller
-                name="datafile"
-                control={control}
-                render={({ field, fieldState }) => (
-                  <UploadFileButton
-                    icon={
-                      <svg
-                        className={css.btnIconContainer}
-                        aria-label="Upload icon"
-                      >
-                        <use
-                          className={clsx(css.btnIcon, css[theme])}
-                          href={`${iconsPath}#icon-upload`}
-                        />
-                      </svg>
-                    }
-                    className={clsx(css.uploadBtn, css[theme])}
-                    accept=".csv,text/plain"
-                    onFileSelect={(file) => {
-                      field.onChange(file);
-                      handleFileSelected(file);
-                    }}
-                    error={fieldState?.error?.message}
-                  >
-                    Upload file
-                  </UploadFileButton>
-                )}
-              />
-            </div>
             <div className={css.sourceDataInfo}>
               <p className={css.subTitle}>Source information</p>
               <div className={css.inputsWrapper}>

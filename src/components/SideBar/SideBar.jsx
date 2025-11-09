@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import ExperimentCardsList from "../ExperimentCardsList/ExperimentCardsList.jsx";
 import AddExperiment from "../AddExperiment/AddExperiment.jsx";
+import Separator from "../UI/Separator/Separator.jsx";
+import DeletAllExperiments from "../DeleteAllExperiments/DeleteAllExperiments.jsx";
 import { selectTheme } from "../../redux/auth/selectors";
 import { selectSources } from "../../redux/datasources/selectors.js";
 import clsx from "clsx";
@@ -20,7 +22,12 @@ export default function SideBar({ isOpen }) {
       >
         <div className={css.content}>
           <p className={clsx(css.title, css[theme])}>My experiments</p>
-          <AddExperiment />
+          <div className={css.buttons}>
+            <Separator />
+            <AddExperiment />
+            <DeletAllExperiments />
+            <Separator />
+          </div>
           <ExperimentCardsList experiments={sources} />
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import Separator from "../UI/Separator/Separator";
+import { FaFileUpload } from "react-icons/fa";
+
 import Button from "../UI/Button/Button";
 import AddExperimentModal from "../AddExperimentModal/AddExperimentModal";
 import UnauthorizedModal from "../UnauthorizedModal/UnauthorizedModal";
@@ -21,9 +22,12 @@ export default function AddExperiment() {
 
   return (
     <div className={css.container}>
-      <Separator />
-      <Button onClick={openModal}> + Upload Data to DB</Button>
-      <Separator />
+      <Button onClick={openModal}>
+        <span className={css.btn}>
+          <FaFileUpload size={24} /> <span>Upload Data</span>
+        </span>
+      </Button>
+
       {isModalOpen &&
         (isLoggedIn ? (
           <AddExperimentModal onClose={closeModal} />

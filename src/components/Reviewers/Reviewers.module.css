@@ -60,15 +60,15 @@
 .letter.yellow {
   color: var(--yellow);
 }
+
 .letter.green {
   color: var(--green);
 }
+
 .letter.blue {
   color: var(--blue);
 }
-.letter.pink {
-  color: var(--pink);
-}
+
 .letter.red {
   color: var(--red);
 }

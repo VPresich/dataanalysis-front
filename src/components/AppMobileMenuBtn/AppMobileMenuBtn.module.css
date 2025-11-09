@@ -55,10 +55,6 @@
     stroke: var(--blue);
   }
 
-  .menuIcon.pink {
-    stroke: var(--pink);
-  }
-
   .menuIcon.red {
     stroke: var(--red);
   }
@@ -73,10 +69,6 @@
 
   .menuIcon.blue:hover {
     stroke: var(--blue-accent);
-  }
-
-  .menuIcon.pink:hover {
-    stroke: var(--pink-accent);
   }
 
   .menuIcon.red:hover {

@@ -34,10 +34,6 @@
   color: var(--blue);
 }
 
-.label.pink {
-  color: var(--pink);
-}
-
 .label.red {
   color: var(--red);
 }

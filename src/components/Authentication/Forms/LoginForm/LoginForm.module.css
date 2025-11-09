@@ -38,14 +38,6 @@
   row-gap: 18px;
 }
 
-.btnAuxStyles {
-  background-color: var(--green);
-}
-
-.btnAuxStyles:hover {
-  background-color: var(--green-accent);
-}
-
 .forgotWrapper {
   display: flex;
   justify-content: flex-end;

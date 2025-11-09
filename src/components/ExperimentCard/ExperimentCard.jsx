@@ -40,6 +40,7 @@ export default function ExperimentCard({ experiment }) {
     <div className={clsx(css.card, css[theme])}>
       <div className={css.title}>
         <span className={css.number}>{source_number}</span>
+        <p className={css.name}>{source_name}</p>
         <div className={css.buttons}>
           <span className={css.btn} onClick={handleEdit}>
             <FaEdit className={clsx(css.icon, css[theme])} size={20} />
@@ -52,7 +53,6 @@ export default function ExperimentCard({ experiment }) {
 
       {/* Info section */}
       <div className={css.info}>
-        <p className={css.name}>{source_name}</p>
         <p className={css.fileName}>{file_name}</p>
         <p className={css.comment}>{comment}</p>
       </div>

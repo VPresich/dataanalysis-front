@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { logOut } from "../auth/operations";
 import {
   getUserSources,
   getNonameSources,
@@ -11,6 +12,7 @@ const sourcesSlice = createSlice({
   name: "sources",
   initialState: {
     items: [],
+    activeSourceNumber: null,
     isLoading: false,
     error: null,
   },
@@ -24,6 +26,10 @@ const sourcesSlice = createSlice({
 
     setUploadProgress(state, action) {
       state.uploadProgress = action.payload;
+    },
+
+    setActiveSource(state, action) {
+      state.activeSourceNumber = action.payload;
     },
   },
 
@@ -110,9 +116,17 @@ const sourcesSlice = createSlice({
       .addCase(updateSourceByNumber.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+        state.error = null;
+        state.isLoading = false;
+        state.activeSourceNumber = null;
       });
   },
 });
 
-export const { resetDataState, setUploadProgress } = sourcesSlice.actions;
+export const { resetDataState, setUploadProgress, setActiveSource } =
+  sourcesSlice.actions;
 export default sourcesSlice.reducer;

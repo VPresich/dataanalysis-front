@@ -12,7 +12,6 @@ import imgDefaultUrl from "../../assets/img/home/default_block.webp";
 import imgYellowUrl from "../../assets/img/home/yellow_analysis_block.webp";
 import imgBlueUrl from "../../assets/img/home/blue_analysis_block.webp";
 import imgGreenUrl from "../../assets/img/home/green_analysis_block.webp";
-import imgPinkUrl from "../../assets/img/home/pink_analysis_block.webp";
 import imgRedUrl from "../../assets/img/home/red_analysis_block.webp";
 import { refreshUser } from "../../redux/auth/operations";
 import { saveToken } from "../../redux/auth/slice";
@@ -29,9 +28,6 @@ const selectImgUrl = (theme) => {
       break;
     case "blue":
       imgUrl = imgBlueUrl;
-      break;
-    case "pink":
-      imgUrl = imgPinkUrl;
       break;
     case "red":
       imgUrl = imgRedUrl;

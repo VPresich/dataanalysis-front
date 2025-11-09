@@ -64,13 +64,6 @@
   background-color: var(--blue);
 }
 
-.radioInput.pink:checked + .customRadio {
-  border-color: var(--pink);
-}
-
-.radioInput.pink:checked + .customRadio::after {
-  background-color: var(--pink);
-}
 .radioInput.red:checked + .customRadio {
   border-color: var(--red);
 }

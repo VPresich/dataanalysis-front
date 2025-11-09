@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Trash2 } from "lucide-react";
+import { FcDeleteDatabase } from "react-icons/fc";
 import { useSelector } from "react-redux";
-import Separator from "../UI/Separator/Separator";
 import Button from "../UI/Button/Button";
 import DeleteAllExperimentsModal from "../DeleteAllExperimentsModal/DeleteAllExperimentsModal";
 import UnauthorizedModal from "../UnauthorizedModal/UnauthorizedModal";
@@ -22,11 +21,11 @@ export default function DeletAllExperiments() {
 
   return (
     <div className={css.container}>
-      <Separator />
       <Button onClick={openModal}>
-        <Trash2 size={18} /> Delete All
+        <span className={css.btn}>
+          <FcDeleteDatabase size={24} /> <span>Delete All</span>
+        </span>
       </Button>
-      <Separator />
       {isModalOpen &&
         (isLoggedIn ? (
           <DeleteAllExperimentsModal onClose={closeModal} />

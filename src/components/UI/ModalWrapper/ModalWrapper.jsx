@@ -56,7 +56,7 @@ const ModalWrapper = ({
             <use href={`${iconsPath}#icon-x-close`} />
           </svg>
         </button>
-        <div className={css.content}>{children}</div>
+        {children}
       </div>
     </div>,
     document.getElementById(portalId)

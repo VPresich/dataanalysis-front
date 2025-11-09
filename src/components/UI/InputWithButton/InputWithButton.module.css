@@ -9,28 +9,31 @@
 
 .input {
   width: 100%;
+  font-family: var(--font-family);
   cursor: pointer;
-  border: 1px solid rgba(38, 38, 38, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 14px 30px 14px 14px;
   outline: none;
-  font-family: var(--font-family);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 16px;
   line-height: 1.37;
   letter-spacing: -0.03em;
-  color: rgba(38, 38, 38, 0.5);
-  background-color: var(--white);
-  transition: border-color 500ms ease-in-out;
+  color: var(--primary);
+  background-color: transparent;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.5s;
 }
 
-.input:focus,
 .input:hover {
-  border-color: var(--green);
+  border-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.01);
 }
 
-.input.error {
-  border-color: var(--error);
+.input:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 }
 
 .error {
@@ -42,6 +45,10 @@
   line-height: 1.17;
   letter-spacing: -0.03em;
   color: var(--error);
+}
+
+.input.error {
+  border-color: var(--error);
 }
 
 .searchButton {

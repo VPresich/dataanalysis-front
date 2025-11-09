@@ -54,10 +54,6 @@
   color: var(--blue-accent);
 }
 
-.accent.pink {
-  color: var(--pink-accent);
-}
-
 .accent.red {
   color: var(--red-accent);
 }
@@ -105,10 +101,6 @@
 
 .features.blue {
   border-color: var(--blue);
-}
-
-.features.pink {
-  border-color: var(--pink);
 }
 
 .features.red {

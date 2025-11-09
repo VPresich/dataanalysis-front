@@ -3,17 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import { resetRefreshState } from "../redux/auth/slice";
 import { refreshUser } from "../redux/auth/operations";
-import {
-  getNonameSources,
-  getUserSources,
-} from "../redux/datasources/operations";
-// import { getUser } from "../redux/data/operations";
+import { getNonameSources } from "../redux/datasources/operations";
 import { getNonameData } from "../redux/data/operations";
-
 import { selectIsLoading } from "../redux/data/selectors";
 import { updateTrackNumbers } from "../redux/datafilters/slice";
 import { selectIsRefreshing } from "../redux/auth/selectors";
-import { selectIsLoggedIn } from "../redux/auth/selectors";
 import processData from "../auxiliary/processData";
 import AppRouter from "./AppRouter";
 import AppLayout from "./AppLayout/AppLayout";
@@ -29,7 +23,6 @@ export default function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const isLoading = useSelector(selectIsLoading);
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     const initApp = async () => {

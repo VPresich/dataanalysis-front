@@ -58,10 +58,6 @@
     color: var(--blue);
   }
 
-  .userName.pink {
-    color: var(--pink);
-  }
-
   .userName.red {
     color: var(--red);
   }

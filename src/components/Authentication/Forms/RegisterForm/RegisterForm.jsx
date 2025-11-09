@@ -57,9 +57,7 @@ export default function RegisterForm({ handleRegistration }) {
               )}
             />
           </div>
-          <Button type="submit" btnAuxStyles={css.btnAuxStyles}>
-            Sign Up
-          </Button>
+          <Button type="submit">Sign Up</Button>
         </div>
       </form>
     </FormProvider>

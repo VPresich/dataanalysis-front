@@ -29,7 +29,3 @@
 .triangle.red {
   --triangle-color: var(--red);
 }
-
-.triangle.pink {
-  --triangle-color: var(--pink);
-}

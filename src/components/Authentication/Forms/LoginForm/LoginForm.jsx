@@ -59,9 +59,7 @@ export default function LoginForm({ handleLogin, onForgotPassword = null }) {
             </IconButton>
           </div>
 
-          <Button type="submit" btnAuxStyles={css.btnAuxStyles}>
-            Log in
-          </Button>
+          <Button type="submit">Log in</Button>
         </div>
       </form>
     </FormProvider>

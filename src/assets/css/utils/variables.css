@@ -11,24 +11,25 @@
   --default: #8a8a89;
   --default-accent: #b0adad;
 
-  --yellow: #f7c138;
+  --yellow: #d1a22b;
   --yellow-accent: #d3bb7e;
 
-  --green: #17c979;
-  --green-accent: #84dfaa;
+  --green: #66a689;
+  --green-accent: #91c4a7;
 
-  --blue: #4a99e3;
-  --blue-accent: #80a7c9;
+  --blue: #3775ae;
+  --blue-accent: #93b2cd;
 
   --pink: #e0a39a;
   --pink-accent: #f2c0bd;
 
   --red: #be3f1f;
-  --red-accent: #db886f;
+  --red-accent: #f2c0bd;
 
   --section-bgr: #eeeeee;
 
   --font-family: "Poppins", sans-serif;
+  --font-family-table: "Roboto", sans-serif;
   /* --font-family: "Roboto", sans-serif; */
   /* --font-family: sans-serif; */
 

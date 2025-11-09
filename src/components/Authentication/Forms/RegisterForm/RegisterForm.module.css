@@ -38,14 +38,6 @@
   row-gap: 18px;
 }
 
-.btnAuxStyles {
-  background-color: var(--green);
-}
-
-.btnAuxStyles:hover {
-  background-color: var(--green-accent);
-}
-
 @media screen and (max-width: 768px) {
   .title {
     font-size: 36px;

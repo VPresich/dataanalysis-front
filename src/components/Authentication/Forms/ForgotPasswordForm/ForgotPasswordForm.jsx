@@ -16,7 +16,6 @@ export default function ForgotPasswordForm({ onBack }) {
 
   const onSubmit = async (values) => {
     console.log("Send reset link to:", values.email);
-    // Здесь можно вызвать Redux-операцию: dispatch(sendResetLink(values.email))
   };
 
   return (
@@ -46,9 +45,7 @@ export default function ForgotPasswordForm({ onBack }) {
                 Back
               </IconButton>
             </div>
-            <Button type="submit" btnAuxStyles={css.btnAuxStyles}>
-              Send Link
-            </Button>
+            <Button type="submit">Send Link</Button>
           </div>
         </div>
       </form>

@@ -70,8 +70,8 @@ const MultySelector = ({
                 btnAuxStyles={css.btnAuxStyles}
               >
                 {selectedOptions.length === options.length
-                  ? "Deselect All"
-                  : "Select All"}
+                  ? "Deselect all"
+                  : "Select all"}
               </Button>
             </div>
             {options.map((option, index) => (

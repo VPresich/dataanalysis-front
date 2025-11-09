@@ -29,10 +29,6 @@
   background-color: var(--blue);
 }
 
-.btn.pink {
-  background-color: var(--pink);
-}
-
 .btn.red {
   background-color: var(--red);
 }
@@ -72,10 +68,6 @@
 
 .label.blue {
   background-color: var(--blue);
-}
-
-.label.pink {
-  background-color: var(--pink);
 }
 
 .label.red {

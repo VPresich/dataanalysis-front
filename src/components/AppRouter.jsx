@@ -6,6 +6,10 @@ const ExampleAnalysis = lazy(() =>
   import("../pages/ExampleAnalysis/ExampleAnalysis")
 );
 const DataAnalysis = lazy(() => import("../pages/DataAnalysis/DataAnalysis"));
+const DataAnalysisHome = lazy(() =>
+  import("../pages/DataAnalysisHome/DataAnalysisHome")
+);
+
 const HoughTransform = lazy(() =>
   import("../pages/HoughTransform/HoughTransform")
 );
@@ -45,13 +49,16 @@ function AppRouter() {
         <Route
           path="/data"
           element={
-            <PrivateRoute redirectTo="/example" component={<DataAnalysis />} />
+            <PrivateRoute
+              redirectTo="/example"
+              component={<DataAnalysisHome />}
+            />
           }
         />
         <Route
           path="/data/:id"
           element={
-            <PrivateRoute redirectTo="/data" component={<DataAnalysis />} />
+            <PrivateRoute redirectTo="/example" component={<DataAnalysis />} />
           }
         />
         <Route path="/hough" element={<HoughTransform />} />

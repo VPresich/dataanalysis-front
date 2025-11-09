@@ -57,7 +57,6 @@ const DataFilters = () => {
   const sourceNumber = useSelector(selectSourceNum);
 
   const handleSourceChange = async (sourceNumber) => {
-    // if (newSourceNumber === sourceNumber) return;
     try {
       const data = await dispatch(
         getNonameDataBySource({ sourceNumber })

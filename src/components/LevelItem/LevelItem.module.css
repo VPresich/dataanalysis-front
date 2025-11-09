@@ -36,11 +36,6 @@
   background-color: var(--blue);
 }
 
-.container.pink {
-  border: none;
-  background-color: var(--pink);
-}
-
 .container.red {
   border: none;
   background-color: var(--red);

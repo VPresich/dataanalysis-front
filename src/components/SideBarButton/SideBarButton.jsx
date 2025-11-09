@@ -18,7 +18,7 @@ export default function SidebarButton({ handleClick = null }) {
       }}
     >
       <FiBarChart size={20} style={{ marginRight: "8px" }} />
-      Load Data
+      Experiments
     </button>
   );
 }

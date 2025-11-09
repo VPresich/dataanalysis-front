@@ -15,11 +15,13 @@
   border: none;
   outline: none;
   background-color: var(--default);
-  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.2s ease;
 }
 
 .btn:hover {
   background-color: var(--default-accent);
+  transform: translateY(-1px);
 }
 
 .btn.yellow {
@@ -46,14 +48,6 @@
   background-color: var(--blue-accent);
 }
 
-.btn.pink {
-  background-color: var(--pink);
-}
-
-.btn.pink:hover {
-  background-color: var(--pink-accent);
-}
-
 .btn.red {
   background-color: var(--red);
 }
@@ -67,6 +61,6 @@
   opacity: 0.4;
 }
 
-.btn:disabled.hover {
+.btn:disabled:hover {
   opacity: 0.3;
 }

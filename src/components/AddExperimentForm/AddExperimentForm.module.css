@@ -6,7 +6,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 24px;
 }
 
 .titleContainer {
@@ -31,25 +31,16 @@
   color: var(--text);
 }
 
-.scrollableContent {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-  padding-right: 8px;
-}
-
 .filedataInfo,
 .sourceDataInfo {
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
+  row-gap: 8px;
 }
 
 .subTitle {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 120%;
   letter-spacing: -0.02em;
   color: var(--primary);
@@ -63,8 +54,8 @@
   outline: none;
   background-color: transparent;
   color: var(--primary);
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 16px;
   line-height: 1.29;
   letter-spacing: -0.02em;
   display: flex;
@@ -88,6 +79,15 @@
   stroke: var(--text);
   fill: transparent;
   transition: stroke 0.5s;
+}
+
+.scrollableContent {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  padding-right: 8px;
 }
 
 .auxTextArea {
@@ -139,7 +139,7 @@
 .inputsWrapper {
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
+  row-gap: 8px;
 }
 
 @media screen and (max-width: 768px) {

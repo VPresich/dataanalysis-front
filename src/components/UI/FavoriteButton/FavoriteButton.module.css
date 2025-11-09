@@ -26,11 +26,6 @@
   stroke: var(--blue);
 }
 
-.pink {
-  fill: var(--pink);
-  stroke: var(--pink);
-}
-
 .red {
   fill: var(--red);
   stroke: var(--red);
