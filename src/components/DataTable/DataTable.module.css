@@ -11,6 +11,9 @@
 }
 
 .th {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-family: var(--font-family);
   color: var(--white);
   background-color: var(--default);
   border: 1px solid #dddddd;
