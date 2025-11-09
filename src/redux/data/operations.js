@@ -18,6 +18,7 @@ export const getNonameData = createAsyncThunk(
 export const getNonameDataBySource = createAsyncThunk(
   "data/getNonameDataBySource",
   async (sourceNumber, thunkAPI) => {
+    console.log("SOURCENUMBER", sourceNumber);
     try {
       const response = await axiosInst.get(
         `data/noname/data/${Number(sourceNumber)}`

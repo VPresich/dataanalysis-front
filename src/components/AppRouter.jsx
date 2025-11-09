@@ -2,17 +2,17 @@ import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
-// const ExampleAnalysis = lazy(() =>
-//   import("../pages/ExampleAnalysis/ExampleAnalysis")
-// );
+const ExampleAnalysis = lazy(() =>
+  import("../pages/ExampleAnalysis/ExampleAnalysis")
+);
 const DataAnalysis = lazy(() => import("../pages/DataAnalysis/DataAnalysis"));
 const DataAnalysisHome = lazy(() =>
   import("../pages/DataAnalysisHome/DataAnalysisHome")
 );
 
-// const ExampleAnalysisHome = lazy(() =>
-//   import("../pages/ExampleAnalysisHome/ExampleAnalysisHome")
-// );
+const ExampleAnalysisHome = lazy(() =>
+  import("../pages/ExampleAnalysisHome/ExampleAnalysisHome")
+);
 
 const HoughTransform = lazy(() =>
   import("../pages/HoughTransform/HoughTransform")
@@ -30,14 +30,15 @@ const VerifiedError = lazy(() =>
   import("../pages/VerifiedErrorPage/VerifiedErrorPage")
 );
 import PrivateRoute from "./PrivateRoute";
-// import RestrictedRoute from "./RestrictedRoute";
+import RestrictedRoute from "./RestrictedRoute";
 
 function AppRouter() {
   return (
     <Suspense>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route
+
+        <Route
           path="/example"
           element={
             <RestrictedRoute
@@ -45,10 +46,13 @@ function AppRouter() {
               component={<ExampleAnalysisHome />}
             />
           }
-        /> */}
-        {/* <Route path="/example" element={<ExampleAnalysisHome />} />
+        />
+
+        {/*
+        <Route path="/example" element={<ExampleAnalysisHome />} />
         <Route path="/example/:id" element={<ExampleAnalysis />} /> */}
-        {/* <Route
+
+        <Route
           path="/example/:id"
           element={
             <RestrictedRoute
@@ -56,7 +60,8 @@ function AppRouter() {
               component={<ExampleAnalysis />}
             />
           }
-        /> */}
+        />
+
         <Route
           path="/data"
           element={
