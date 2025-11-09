@@ -29,24 +29,6 @@ export default function DataAnalysisHome() {
       } catch {
         if (isDevMode) errNotify("Error loading USER sources");
       }
-
-      // try {
-      //   const data = await dispatch(getNonameData()).unwrap();
-      //   if (!data || (Array.isArray(data) && data.length === 0)) {
-      //     if (isDevMode) errNotify("No Noname data found");
-      //     return;
-      //   }
-
-      //   if (isDevMode) successNotify("Success loading Noname data");
-      //   const filteredTracks = processData(data, 5);
-
-      //   dispatch(updateTrackNumbers(filteredTracks));
-      //   if (isDevMode)
-      //     successNotify("Tracks successfully get trajectory of noname");
-      // } catch (error) {
-      //   console.error(error);
-      //   if (isDevMode) errNotify("Error loading Noname data");
-      // }
     };
 
     initApp();
