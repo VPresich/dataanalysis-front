@@ -7,6 +7,7 @@ import dataFiltersReducer from "../redux/datafilters/slice";
 import houghReducer from "../redux/houghdata/slice";
 import houghTrajectoryReducer from "../redux/houghTrajectory/slice";
 import sideBarReducer from "../redux/sidebar/slice";
+import loaderReducer from "../redux/loader/slice";
 
 import {
   persistStore,
@@ -34,6 +35,7 @@ const store = configureStore({
     hough: houghReducer,
     houghtrack: houghTrajectoryReducer,
     sidebar: sideBarReducer,
+    loader: loaderReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

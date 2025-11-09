@@ -60,6 +60,7 @@ const UploadFileButton = ({
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
+    console.log("FILE", file);
     if (!file) return;
     onFileSelect?.(file);
   };

@@ -7,15 +7,24 @@ const DeleteApproveForm = ({ onApprove, onCancel, title, text }) => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={onApprove}>
+      <form onSubmit={methods.handleSubmit(onApprove)}>
         <div className={css.content}>
           <div className={css.titleContainer}>
             <h2 className={css.title}>{title}</h2>
             <p className={css.text}>{text}</p>
           </div>
+
           <div className={css.buttons}>
-            <Button type="submit">Delete</Button>
-            <Button onClick={onCancel} btnAuxStyles={css.btnAuxStyles}>
+            <Button type="submit" btnAuxStyles={css.btnAuxStyles}>
+              Approve
+            </Button>
+
+            <Button
+              type="button"
+              onClick={onCancel}
+              variant="cancel"
+              btnAuxStyles={css.btnAuxStyles}
+            >
               Cancel
             </Button>
           </div>

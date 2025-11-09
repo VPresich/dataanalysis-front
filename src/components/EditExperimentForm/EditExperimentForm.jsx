@@ -74,7 +74,13 @@ const EditExperimentForm = ({ experiment, handleExperimentSave }) => {
             <Controller
               name="comment"
               control={control}
-              render={({ field }) => <TextArea {...field} label="Comment" />}
+              render={({ field }) => (
+                <TextArea
+                  {...field}
+                  label="Comment"
+                  className={css.auxTextArea}
+                />
+              )}
             />
           </div>
 

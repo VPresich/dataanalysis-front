@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getHoughTrajectoryData } from "../../redux/houghTrajectory/operations";
 import {
   setHoughTrajectory,
   setTrajectoryData,
 } from "../../redux/houghTrajectory/slice";
 import generateTrajectoryPoints from "../../auxiliary/genereateTrajectoryPointsNorm";
 import hough2DTrajectories from "../../auxiliary/hough2DTrajectories";
-import Loader from "../../components/UI/Loader/Loader";
 import clsx from "clsx";
 import HoughTrajectoryTable from "../../components/HoughTrajectoryTable/HoughTrajectoryTable";
 import ModalWrapper from "../../components/UI/ModalWrapper/ModalWrapper";
@@ -16,7 +14,6 @@ import Hough2DTrajectoryVisualizer from "../../components/Hough2DTrajectoryVisua
 import Hough2DTrajectoryResult from "../../components/Hough2DTrajectoryResult/Hough2DTrajectoryResult";
 import {
   selectTrajectoryData,
-  selectIsLoading,
   selectError,
 } from "../../redux/houghTrajectory/selectors";
 
@@ -29,7 +26,6 @@ export default function Hough2DTrajectory() {
   const [showVisGraph, setShowVisGraph] = useState(false);
   const [showResultGraph, setShowResultGraph] = useState(false);
 
-  const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const trajectoryData = useSelector(selectTrajectoryData);
   const theme = useSelector(selectTheme);
@@ -60,18 +56,6 @@ export default function Hough2DTrajectory() {
     dispatch(setHoughTrajectory(houghTrajectory));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(getHoughTrajectoryData())
-  //     .unwrap()
-  //     .then((data) => {
-  //       const houghTrajectory = hough2DTrajectories(data);
-  //       dispatch(setHoughTrajectory(houghTrajectory));
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error in get Hough Data:", error);
-  //     });
-  // }, [dispatch]);
-
   return (
     <React.Fragment>
       <DocumentTitle>Hough2D Trajectory</DocumentTitle>
@@ -86,16 +70,10 @@ export default function Hough2DTrajectory() {
           </Button>
         </div>
         <div className={css.tableContainer}>
-          {isLoading ? (
-            <Loader />
+          {!error && trajectoryData.length > 0 ? (
+            <HoughTrajectoryTable data={trajectoryData} />
           ) : (
-            <React.Fragment>
-              {!error && trajectoryData.length > 0 ? (
-                <HoughTrajectoryTable data={trajectoryData} />
-              ) : (
-                <p className={clsx(css.text, css[theme])}>Not found data.</p>
-              )}
-            </React.Fragment>
+            <p className={clsx(css.text, css[theme])}>Not found data.</p>
           )}
         </div>
       </section>

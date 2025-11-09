@@ -64,3 +64,56 @@
 .btn:disabled:hover {
   opacity: 0.3;
 }
+
+.btn.cancel {
+  background-color: transparent;
+  color: var(--default-accent);
+  border: 1px solid var(--default-accent);
+  transition: all 0.3s ease;
+}
+
+.btn.cancel:hover {
+  background-color: var(--default-accent);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.btn.cancel.green {
+  border-color: var(--green-accent);
+  color: var(--green-accent);
+}
+
+.btn.cancel.green:hover {
+  background-color: var(--green-accent);
+  color: var(--white);
+}
+
+.btn.cancel.red {
+  border-color: var(--red-accent);
+  color: var(--red-accent);
+}
+
+.btn.cancel.red:hover {
+  background-color: var(--red-accent);
+  color: var(--white);
+}
+
+.btn.cancel.blue {
+  border-color: var(--blue-accent);
+  color: var(--blue-accent);
+}
+
+.btn.cancel.blue:hover {
+  background-color: var(--blue)-accent;
+  color: var(--white);
+}
+
+.btn.cancel.yellow {
+  border-color: var(--yellow-accent);
+  color: var(--yellow)-accent;
+}
+
+.btn.cancel.yellow:hover {
+  background-color: var(--yellow-accent);
+  color: var(--white);
+}

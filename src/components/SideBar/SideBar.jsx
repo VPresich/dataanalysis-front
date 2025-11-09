@@ -15,22 +15,20 @@ export default function SideBar({ isOpen }) {
   const sidebarRef = useRef(null);
 
   return (
-    <>
-      <div
-        className={clsx(css.sidebar, css[theme], isOpen && css.open)}
-        ref={sidebarRef}
-      >
-        <div className={css.content}>
-          <p className={clsx(css.title, css[theme])}>My experiments</p>
-          <div className={css.buttons}>
-            <Separator />
-            <AddExperiment />
-            <DeletAllExperiments />
-            <Separator />
-          </div>
-          <ExperimentCardsList experiments={sources} />
+    <div
+      className={clsx(css.sidebar, css[theme], isOpen && css.open)}
+      ref={sidebarRef}
+    >
+      <div className={css.content}>
+        <p className={clsx(css.title, css[theme])}>My experiments</p>
+        <div className={css.buttons}>
+          <Separator />
+          <AddExperiment />
+          <DeletAllExperiments />
+          <Separator />
         </div>
+        <ExperimentCardsList experiments={sources} />
       </div>
-    </>
+    </div>
   );
 }

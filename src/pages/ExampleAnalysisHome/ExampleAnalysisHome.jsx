@@ -1,9 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/UI/Loader/Loader";
-import { getUserSources } from "../../redux/datasources/operations";
-import { selectIsLoading } from "../../redux/datasources/selectors";
+import { useDispatch } from "react-redux";
+import { getNonameSources } from "../../redux/datasources/operations";
 import ExperimentNotSelected from "../../components/ExperimentNotSelected/ExperimentNotSelected";
 import DocumentTitle from "../../components/DocumentTitle";
 import {
@@ -13,21 +11,20 @@ import {
 
 const isDevMode = import.meta.env.VITE_DEVELOPED_MODE === "true";
 
-export default function DataAnalysisHome() {
+export default function ExampleAnalysisHome() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
   useEffect(() => {
     const initApp = async () => {
       try {
-        const sources = await dispatch(getUserSources()).unwrap();
-        if (isDevMode) successNotify("Success loading USER sources");
+        const sources = await dispatch(getNonameSources()).unwrap();
         if (!sources || (Array.isArray(sources) && sources.length === 0)) {
-          if (isDevMode) errNotify("No USER sources found");
+          if (isDevMode) errNotify("No Noname sources found");
           return;
         }
-        console.log("sourceNumber", sources[0].source_number);
+
+        if (isDevMode) successNotify("Success loading Noname sources");
       } catch {
-        if (isDevMode) errNotify("Error loading USER sources");
+        if (isDevMode) errNotify("Error loading Noname sources");
       }
 
       // try {
@@ -51,12 +48,9 @@ export default function DataAnalysisHome() {
 
     initApp();
   }, [dispatch]);
-  if (isLoading) {
-    return <Loader />;
-  }
   return (
     <React.Fragment>
-      <DocumentTitle>Data Analysis Home</DocumentTitle>
+      <DocumentTitle>Example Analysis Home</DocumentTitle>
       <ExperimentNotSelected />
     </React.Fragment>
   );

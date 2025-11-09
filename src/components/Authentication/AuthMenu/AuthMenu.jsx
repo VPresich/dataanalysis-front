@@ -29,8 +29,6 @@ const AuthMenu = () => {
         <>
           <UserAvatarModal />
           <p className={css.userName}>{`Hi, ${userName}`}</p>
-          {/* <SidebarButton /> */}
-
           <AuthButton>Logout</AuthButton>
         </>
       ) : (

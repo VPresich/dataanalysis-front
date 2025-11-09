@@ -2,10 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import clsx from "clsx";
-import Loader from "../../components/UI/Loader/Loader";
 import { selectTheme } from "../../redux/auth/selectors";
-import { selectIsLoading } from "../../redux/data/selectors";
-import { selectIsRefreshing } from "../../redux/auth/selectors";
 import DocumentTitle from "../../components/DocumentTitle";
 import Button from "../../components/UI/Button/Button";
 import imgDefaultUrl from "../../assets/img/home/default_block.webp";
@@ -47,9 +44,6 @@ export default function HomePage() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isLoading = useSelector(selectIsLoading);
-  const isRefreshing = useSelector(selectIsRefreshing);
-
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const token = queryParams.get("token");
@@ -70,65 +64,57 @@ export default function HomePage() {
   return (
     <React.Fragment>
       <DocumentTitle>Home Page</DocumentTitle>
-      {isRefreshing || isLoading ? (
-        <Loader />
-      ) : (
-        <div className={css.container}>
-          <section className={css.welcome}>
-            <div className={css.info}>
-              <h1 className={css.title}>
-                Turn{" "}
-                <span className={clsx(css.accent, css[theme])}>raw data</span>{" "}
-                into knowledge
-              </h1>
-              <p className={css.text}>
-                Transform complex datasets into actionable insights. Explore and
-                understand your data, visualize it easily, and make informed
-                decisions.
-              </p>
-              <Button onClick={handleClick} btnAuxStyles={css.btnAuxStyles}>
-                Get started
-              </Button>
-            </div>
-            <div className={css.imgContainer}>
-              <img
-                src={selectImgUrl(theme)}
-                alt="Picture"
-                className={css.img}
-              />
-            </div>
-          </section>
+      <div className={css.container}>
+        <section className={css.welcome}>
+          <div className={css.info}>
+            <h1 className={css.title}>
+              Turn{" "}
+              <span className={clsx(css.accent, css[theme])}>raw data</span>{" "}
+              into knowledge
+            </h1>
+            <p className={css.text}>
+              Transform complex datasets into actionable insights. Explore and
+              understand your data, visualize it easily, and make informed
+              decisions.
+            </p>
+            <Button onClick={handleClick} btnAuxStyles={css.btnAuxStyles}>
+              Get started
+            </Button>
+          </div>
+          <div className={css.imgContainer}>
+            <img src={selectImgUrl(theme)} alt="Picture" className={css.img} />
+          </div>
+        </section>
 
-          <section className={clsx(css.features, css[theme])}>
-            <ul className={css.featuresList}>
-              <li className={css.featureItem}>
-                <p className={css.itemTitle}>Add Data</p>
-                <p className={css.itemText}>
-                  Upload and manage your datasets effortlessly
-                </p>
-              </li>
-              <li className={css.featureItem}>
-                <p className={css.itemTitle}>Analyze</p>
-                <p className={css.itemText}>
-                  Quickly explore and interpret your datasets
-                </p>
-              </li>
-              <li className={css.featureItem}>
-                <p className={css.itemTitle}>Visualize</p>
-                <p className={css.itemText}>
-                  Create clear charts and dashboards in seconds.
-                </p>
-              </li>
-              <li className={css.featureItem}>
-                <p className={css.itemTitle}>Decide</p>
-                <p className={css.itemText}>
-                  Make confident, data-driven business choices.
-                </p>
-              </li>
-            </ul>
-          </section>
-        </div>
-      )}
+        <section className={clsx(css.features, css[theme])}>
+          <ul className={css.featuresList}>
+            <li className={css.featureItem}>
+              <p className={css.itemTitle}>Add Data</p>
+              <p className={css.itemText}>
+                Upload and manage your datasets effortlessly
+              </p>
+            </li>
+            <li className={css.featureItem}>
+              <p className={css.itemTitle}>Analyze</p>
+              <p className={css.itemText}>
+                Quickly explore and interpret your datasets
+              </p>
+            </li>
+            <li className={css.featureItem}>
+              <p className={css.itemTitle}>Visualize</p>
+              <p className={css.itemText}>
+                Create clear charts and dashboards in seconds.
+              </p>
+            </li>
+            <li className={css.featureItem}>
+              <p className={css.itemTitle}>Decide</p>
+              <p className={css.itemText}>
+                Make confident, data-driven business choices.
+              </p>
+            </li>
+          </ul>
+        </section>
+      </div>
     </React.Fragment>
   );
 }

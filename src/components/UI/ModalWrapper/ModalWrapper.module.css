@@ -15,14 +15,14 @@
 .modal {
   width: 599px;
   background: var(--white);
-  padding-top: 64px;
-  padding-left: 64px;
-  padding-bottom: 64px;
-  padding-right: 64px;
+  padding-top: 60px;
+  padding-left: 60px;
+  padding-bottom: 60px;
+  padding-right: 60px;
   border-radius: 30px;
   position: relative;
   max-height: 100vh;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 .modal.graph {
@@ -30,6 +30,7 @@
   width: 90vw;
   height: 90vh;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .closeBtn {

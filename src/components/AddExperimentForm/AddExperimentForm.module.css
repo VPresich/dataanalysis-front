@@ -1,18 +1,24 @@
 .form {
-  font-family: var(--font-family);
   width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
+  font-family: var(--font-family);
   display: flex;
   flex-direction: column;
-  row-gap: 24px;
+  row-gap: 40px;
+  overflow: hidden;
 }
 
 .titleContainer {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 12px;
 }
 
 .title {
@@ -82,12 +88,14 @@
 }
 
 .scrollableContent {
+  padding-right: 8px;
   flex: 1;
   overflow-y: auto;
+  max-height: 48vh;
   display: flex;
   flex-direction: column;
   row-gap: 24px;
-  padding-right: 8px;
+  padding-right: 12px;
 }
 
 .auxTextArea {
@@ -139,7 +147,7 @@
 .inputsWrapper {
   display: flex;
   flex-direction: column;
-  row-gap: 8px;
+  row-gap: 12px;
 }
 
 @media screen and (max-width: 768px) {

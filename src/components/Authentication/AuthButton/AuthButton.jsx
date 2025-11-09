@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { errNotify } from "../../../auxiliary/notification/notification";
+import { closeSidebar } from "../../../redux/sidebar/slice";
 import { ERR_LOGIN } from "../Forms/constants";
 import { selectIsLoggedIn, selectTheme } from "../../../redux/auth/selectors";
 import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
 import LoginForm from "../Forms/LoginForm/LoginForm";
 import ForgotPasswordForm from "../Forms/ForgotPasswordForm/ForgotPasswordForm";
 import { logOut, logIn } from "../../../redux/auth/operations";
+import {
+  errNotify,
+  successNotify,
+} from "../../../auxiliary/notification/notification";
+
 import IconButton from "../../UI/IconButton/IconButton";
+
+const isDevMode = import.meta.env.VITE_DEVELOPED_MODE === "true";
 
 export default function AuthButton({ children, handleClick }) {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -19,8 +26,18 @@ export default function AuthButton({ children, handleClick }) {
 
   const handleButton = () => {
     if (isLoggedIn) {
-      dispatch(logOut());
-      handleClick && handleClick();
+      dispatch(logOut())
+        .unwrap()
+        .then(() => {
+          if (isDevMode) {
+            successNotify("You have been logged out successfully.");
+          }
+          dispatch(closeSidebar());
+          handleClick && handleClick();
+        })
+        .catch(() => {
+          errNotify("Failed to log out. Please try again.");
+        });
     } else {
       setShowLoginForm(true);
     }
@@ -30,6 +47,9 @@ export default function AuthButton({ children, handleClick }) {
     dispatch(logIn(values))
       .unwrap()
       .then(() => {
+        if (isDevMode) {
+          successNotify("You have logged in successfully");
+        }
         setShowLoginForm(false);
         setShowForgotForm(false);
         handleClick && handleClick();

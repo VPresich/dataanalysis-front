@@ -2,18 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllHoughData } from "../../redux/houghdata/operations";
 import { setResult } from "../../redux/houghdata/slice";
-import Loader from "../../components/UI/Loader/Loader";
 import clsx from "clsx";
 import HoughDataTable from "../../components/HoughDataTable/HoughDataTable";
 import ModalWrapper from "../../components/UI/ModalWrapper/ModalWrapper";
 import Button from "../../components/UI/Button/Button";
 import HoughTransformVisualizer from "../../components/HoughTransformVisualizer/HoughTransformVisualizer";
 import HoughTransformResult from "../../components/HoughTransformResult/HoughTransformResult";
-import {
-  selectHoughData,
-  selectIsLoading,
-  selectError,
-} from "../../redux/houghdata/selectors";
+import { selectHoughData, selectError } from "../../redux/houghdata/selectors";
 import { selectTheme } from "../../redux/auth/selectors";
 import DocumentTitle from "../../components/DocumentTitle";
 import houghTransform from "../../auxiliary/houghTransform";
@@ -24,7 +19,6 @@ export default function HoughTransform() {
   const [showVisGraph, setShowVisGraph] = useState(false);
   const [showResultGraph, setShowResultGraph] = useState(false);
 
-  const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const houghData = useSelector(selectHoughData);
   const theme = useSelector(selectTheme);
@@ -71,16 +65,10 @@ export default function HoughTransform() {
           </Button>
         </div>
         <div className={css.tableContainer}>
-          {isLoading ? (
-            <Loader />
+          {!error && houghData.length > 0 ? (
+            <HoughDataTable data={houghData} />
           ) : (
-            <React.Fragment>
-              {!error && houghData.length > 0 ? (
-                <HoughDataTable data={houghData} />
-              ) : (
-                <p className={clsx(css.text, css[theme])}>Not found data.</p>
-              )}
-            </React.Fragment>
+            <p className={clsx(css.text, css[theme])}>Not found data.</p>
           )}
         </div>
       </section>

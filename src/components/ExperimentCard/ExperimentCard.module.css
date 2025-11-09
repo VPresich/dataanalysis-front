@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -21,15 +22,19 @@
 .card.green {
   background-color: var(--green);
 }
+
 .card.blue {
   background-color: var(--blue);
 }
+
 .card.yellow {
   background-color: var(--yellow);
 }
+
 .card.red {
   background-color: var(--red);
 }
+
 .card.default {
   background-color: var(--default);
 }
@@ -95,12 +100,18 @@
 .name {
   font-weight: 600;
   font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .fileName {
-  font-size: 14px;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .comment {
@@ -108,7 +119,7 @@
   font-size: 12px;
   padding: 4px;
   background-color: var(--white);
-  color: var(--text);
+  color: var(--default);
   height: 60px;
   overflow-y: auto;
   white-space: pre-wrap;
@@ -147,4 +158,33 @@
   to {
     transform: translateY(0);
   }
+}
+
+.selected {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.selected.card.green {
+  background-color: var(--green-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card.blue.selected {
+  background-color: var(--blue-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card.red.selected {
+  background-color: var(--red-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card.yellow.selected {
+  background-color: var(--yellow-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }

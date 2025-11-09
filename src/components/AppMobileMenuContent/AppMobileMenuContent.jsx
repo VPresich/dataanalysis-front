@@ -43,11 +43,6 @@ const AppMobileMenuContent = ({ onMenuClick }) => {
         <NavLink className={classItem} to="/data" onClick={onMenuClick}>
           IMMAnalysis
         </NavLink>
-        {/* {isLoggedIn && (
-          <NavLink className={classItem} to="/favorites" onClick={onMenuClick}>
-            Favorites
-          </NavLink>
-        )} */}
       </nav>
     </div>
   );

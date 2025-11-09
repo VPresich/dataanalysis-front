@@ -7,11 +7,14 @@ import Input from "../UI/Input/Input";
 import TextArea from "../UI/TextArea/TextArea";
 import Button from "../UI/Button/Button";
 import UploadFileButton from "../UploadFileButton/UploadFileButton";
-import { feedbackSchema } from "./feedbackSchema";
+import { selectSourceNumbers } from "../../redux/datasources/selectors";
+import { createFeedbackSchema } from "./createFeedbackSchema";
 import iconsPath from "../../assets/img/sprite.svg";
 import css from "./AddExperimentForm.module.css";
 
 const AddExperimentForm = ({ onSubmitForm }) => {
+  const existingNumbers = useSelector(selectSourceNumbers);
+  const feedbackSchema = createFeedbackSchema(existingNumbers);
   const methods = useForm({
     resolver: yupResolver(feedbackSchema),
     defaultValues: {
@@ -23,18 +26,17 @@ const AddExperimentForm = ({ onSubmitForm }) => {
     },
   });
   const theme = useSelector(selectTheme);
-  const { setValue, control } = methods;
+  const { setValue, handleSubmit, control } = methods;
 
-  const handleFileSelected = (result) => {
-    console.log(result);
-    if (!result.file) return;
-    setValue("datafile", result.file, { shouldValidate: true });
-    setValue("file_name", result.file.name, { shouldValidate: true });
+  const handleFileSelected = (file) => {
+    if (!file) return;
+    setValue("datafile", file, { shouldValidate: true });
+    setValue("file_name", file.name, { shouldValidate: true });
   };
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={onSubmitForm} className={css.form}>
+      <form onSubmit={handleSubmit(onSubmitForm)} className={css.form}>
         <div className={css.content}>
           <div className={css.titleContainer}>
             <h3 className={css.title}>Upload experiment</h3>
@@ -43,52 +45,52 @@ const AddExperimentForm = ({ onSubmitForm }) => {
               information about data.
             </p>
           </div>
-
-          <div className={css.filedataInfo}>
-            <p className={css.subTitle}>Choose data file</p>
-            <Controller
-              name="file_name"
-              control={control}
-              render={({ field, fieldState }) => (
-                <Input
-                  {...field}
-                  placeholder="File name"
-                  type="text"
-                  error={fieldState?.error?.message}
-                  readOnly
-                />
-              )}
-            />
-            <Controller
-              name="datafile"
-              control={control}
-              render={({ field, fieldState }) => (
-                <UploadFileButton
-                  icon={
-                    <svg
-                      className={css.btnIconContainer}
-                      aria-label="Upload icon"
-                    >
-                      <use
-                        className={clsx(css.btnIcon, css[theme])}
-                        href={`${iconsPath}#icon-upload`}
-                      />
-                    </svg>
-                  }
-                  className={clsx(css.uploadBtn, css[theme])}
-                  accept=".csv,text/plain"
-                  onFileSelect={(file) => {
-                    field.onChange(file);
-                    handleFileSelected(file);
-                  }}
-                  error={fieldState?.error?.message}
-                >
-                  Upload file
-                </UploadFileButton>
-              )}
-            />
-          </div>
           <div className={css.scrollableContent}>
+            <div className={css.filedataInfo}>
+              <p className={css.subTitle}>Choose data file</p>
+              <Controller
+                name="file_name"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <Input
+                    {...field}
+                    placeholder="File name"
+                    type="text"
+                    error={fieldState?.error?.message}
+                    readOnly
+                  />
+                )}
+              />
+              <Controller
+                name="datafile"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <UploadFileButton
+                    icon={
+                      <svg
+                        className={css.btnIconContainer}
+                        aria-label="Upload icon"
+                      >
+                        <use
+                          className={clsx(css.btnIcon, css[theme])}
+                          href={`${iconsPath}#icon-upload`}
+                        />
+                      </svg>
+                    }
+                    className={clsx(css.uploadBtn, css[theme])}
+                    accept=".csv,text/plain"
+                    onFileSelect={(file) => {
+                      field.onChange(file);
+                      handleFileSelected(file);
+                    }}
+                    error={fieldState?.error?.message}
+                  >
+                    Upload file
+                  </UploadFileButton>
+                )}
+              />
+            </div>
+
             <div className={css.sourceDataInfo}>
               <p className={css.subTitle}>Source information</p>
               <div className={css.inputsWrapper}>

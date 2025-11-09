@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInst } from "../../api/axiosInst";
-import { setUploadProgress } from "./slice";
+// import { setUploadProgress } from "./slice";
 
 export const getUserSources = createAsyncThunk(
   "sources/getUserSources",
@@ -35,21 +35,10 @@ export const uploadData = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const formData = new FormData();
-
       Object.entries(data).forEach(([key, value]) => {
         formData.append(key, value);
       });
-
-      const response = await axiosInst.post("/sources", formData, {
-        onUploadProgress: (progressEvent) => {
-          if (progressEvent.total) {
-            const percent = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total
-            );
-            thunkAPI.dispatch(setUploadProgress(percent));
-          }
-        },
-      });
+      const response = await axiosInst.post("/sources", formData);
       return response.data;
     } catch (error) {
       const message =
@@ -61,7 +50,7 @@ export const uploadData = createAsyncThunk(
 
 export const deleteSourceByNumber = createAsyncThunk(
   "sources/deleteSourceByNumber",
-  async ({ sourceNumber }, thunkAPI) => {
+  async (sourceNumber, thunkAPI) => {
     try {
       const response = await axiosInst.delete(`/sources/${sourceNumber}`);
       return response.data;
@@ -76,6 +65,8 @@ export const deleteSourceByNumber = createAsyncThunk(
 export const updateSourceByNumber = createAsyncThunk(
   "sources/updateSourceByNumber",
   async ({ sourceNumber, values }, thunkAPI) => {
+    console.log("THUNK", sourceNumber);
+    console.log("THUNK", values);
     try {
       const response = await axiosInst.patch(
         `/sources/${sourceNumber}`,
@@ -89,3 +80,14 @@ export const updateSourceByNumber = createAsyncThunk(
     }
   }
 );
+
+//   {
+//   onUploadProgress: (progressEvent) => {
+//     if (progressEvent.total) {
+//       const percent = Math.round(
+//         (progressEvent.loaded * 100) / progressEvent.total
+//       );
+//       thunkAPI.dispatch(setUploadProgress(percent));
+//     }
+//   },
+// }

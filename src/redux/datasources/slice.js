@@ -12,7 +12,7 @@ const sourcesSlice = createSlice({
   name: "sources",
   initialState: {
     items: [],
-    activeSourceNumber: null,
+    currentSource: null,
     isLoading: false,
     error: null,
   },
@@ -28,8 +28,12 @@ const sourcesSlice = createSlice({
       state.uploadProgress = action.payload;
     },
 
-    setActiveSource(state, action) {
-      state.activeSourceNumber = action.payload;
+    setCurrentSource(state, action) {
+      state.currentSource = action.payload;
+    },
+
+    clearCurrentSource(state) {
+      state.currentSource = null;
     },
   },
 
@@ -122,11 +126,15 @@ const sourcesSlice = createSlice({
         state.items = [];
         state.error = null;
         state.isLoading = false;
-        state.activeSourceNumber = null;
+        state.currentSource = null;
       });
   },
 });
 
-export const { resetDataState, setUploadProgress, setActiveSource } =
-  sourcesSlice.actions;
+export const {
+  resetDataState,
+  setUploadProgress,
+  setCurrentSource,
+  clearCurrentSource,
+} = sourcesSlice.actions;
 export default sourcesSlice.reducer;
