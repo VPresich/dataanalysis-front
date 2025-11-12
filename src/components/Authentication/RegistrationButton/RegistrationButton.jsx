@@ -4,7 +4,6 @@ import {
   errNotify,
   successNotify,
 } from "../../../auxiliary/notification/notification";
-import { ERR_REGISTRATION } from "../Forms/constants";
 import { register } from "../../../redux/auth/operations";
 import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
 import RegisterForm from "../Forms/RegisterForm/RegisterForm";
@@ -35,11 +34,7 @@ const RegistrationButton = ({ handleClick }) => {
         }
       })
       .catch((error) => {
-        if (error.includes("409")) {
-          errNotify("The user is already registered");
-        } else {
-          errNotify(ERR_REGISTRATION);
-        }
+        errNotify(error);
       });
   };
 

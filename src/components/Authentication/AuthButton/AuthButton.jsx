@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeSidebar } from "../../../redux/sidebar/slice";
-import { ERR_LOGIN } from "../Forms/constants";
 import { selectIsLoggedIn, selectTheme } from "../../../redux/auth/selectors";
 import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
 import LoginForm from "../Forms/LoginForm/LoginForm";
@@ -55,13 +54,7 @@ export default function AuthButton({ children, handleClick }) {
         handleClick && handleClick();
       })
       .catch((err) => {
-        if (err.status === 403) {
-          errNotify(
-            "Please verify your email. Check your inbox for the confirmation link."
-          );
-        } else {
-          errNotify(ERR_LOGIN);
-        }
+        errNotify(err);
       });
   };
 

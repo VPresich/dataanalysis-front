@@ -12,7 +12,9 @@ export const register = createAsyncThunk(
       }
       return resp.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const message =
+        error.response?.data?.message || error.message || "Unknown error";
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -25,7 +27,9 @@ export const logIn = createAsyncThunk(
       setAuthHeader(resp.data.token);
       return resp.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const message =
+        error.response?.data?.message || error.message || "Unknown error";
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -35,7 +39,9 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     await axiosInst.post("/auth/logout");
     clearAuthHeader();
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    const message =
+      error.response?.data?.message || error.message || "Unknown error";
+    return thunkAPI.rejectWithValue(message);
   }
 });
 
