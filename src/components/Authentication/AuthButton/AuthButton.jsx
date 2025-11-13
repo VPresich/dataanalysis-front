@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeSidebar } from "../../../redux/sidebar/slice";
-import { selectIsLoggedIn, selectTheme } from "../../../redux/auth/selectors";
-import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
-import LoginForm from "../Forms/LoginForm/LoginForm";
-import ForgotPasswordForm from "../Forms/ForgotPasswordForm/ForgotPasswordForm";
-import { logOut, logIn } from "../../../redux/auth/operations";
+import { selectIsLoggedIn } from "../../../redux/auth/selectors";
+import LoginModal from "../LoginModal/LoginModal";
+import { logOut } from "../../../redux/auth/operations";
 import {
   errNotify,
   successNotify,
@@ -17,11 +15,8 @@ const isDevMode = import.meta.env.VITE_DEVELOPED_MODE === "true";
 
 export default function AuthButton({ children, handleClick }) {
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const [showForgotForm, setShowForgotForm] = useState(false);
   const dispatch = useDispatch();
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const theme = useSelector(selectTheme);
 
   const handleButton = () => {
     if (isLoggedIn) {
@@ -38,62 +33,25 @@ export default function AuthButton({ children, handleClick }) {
           errNotify("Failed to log out. Please try again.");
         });
     } else {
-      setShowLoginForm(true);
+      handleOpenLogin();
     }
-  };
-
-  const handleLogin = (values) => {
-    dispatch(logIn(values))
-      .unwrap()
-      .then(() => {
-        if (isDevMode) {
-          successNotify("You have logged in successfully");
-        }
-        setShowLoginForm(false);
-        setShowForgotForm(false);
-        handleClick && handleClick();
-      })
-      .catch((err) => {
-        errNotify(err);
-      });
   };
 
   const handleCloseLogin = () => {
     setShowLoginForm(false);
+    handleClick && handleClick();
   };
 
-  const handleForgotPasswordClose = () => {
-    setShowForgotForm(false);
+  const handleOpenLogin = () => {
     setShowLoginForm(true);
-  };
-
-  const handleForgotPasswordOpen = () => {
-    setShowLoginForm(false);
-    setShowForgotForm(true);
   };
 
   return (
     <div>
-      <IconButton
-        iconName="icon-log-in-out"
-        theme={theme}
-        onClick={handleButton}
-      >
+      <IconButton iconName="icon-log-in-out" onClick={handleButton}>
         {children}
       </IconButton>
-      {showLoginForm && (
-        <ModalWrapper onClose={handleCloseLogin}>
-          <LoginForm
-            handleLogin={handleLogin}
-            onForgotPassword={handleForgotPasswordOpen}
-          />
-        </ModalWrapper>
-      )}
-      {showForgotForm && (
-        <ModalWrapper onClose={handleForgotPasswordClose}>
-          <ForgotPasswordForm onBack={handleForgotPasswordClose} />
-        </ModalWrapper>
-      )}
+      {showLoginForm && <LoginModal onClose={handleCloseLogin} />}
     </div>
   );
 }

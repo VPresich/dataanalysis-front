@@ -27,11 +27,13 @@ const RegistrationButton = ({ handleClick }) => {
       .then((response) => {
         if (response.verifyRequired) {
           successNotify("Verification email sent. Please check your inbox.");
-          setShowRegisterForm(false);
         } else {
-          setShowRegisterForm(false);
-          handleClick && handleClick();
+          successNotify(
+            "You&#39;ve registered successfully — let&#39;s get started!"
+          );
         }
+        setShowRegisterForm(false);
+        handleClick && handleClick();
       })
       .catch((error) => {
         errNotify(error);

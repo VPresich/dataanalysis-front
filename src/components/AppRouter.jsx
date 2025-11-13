@@ -14,15 +14,15 @@ const ExampleAnalysisHome = lazy(() =>
   import("../pages/ExampleAnalysisHome/ExampleAnalysisHome")
 );
 
-const HoughTransform = lazy(() =>
-  import("../pages/HoughTransform/HoughTransform")
-);
-const Hough3DTransform = lazy(() =>
-  import("../pages/Hough3DTransform/Hough3DTransform")
-);
-const Hough2DTrajectory = lazy(() =>
-  import("../pages/Hough2DTrajectory/Hough2DTrajectory")
-);
+// const HoughTransform = lazy(() =>
+//   import("../pages/HoughTransform/HoughTransform")
+// );
+// const Hough3DTransform = lazy(() =>
+//   import("../pages/Hough3DTransform/Hough3DTransform")
+// );
+// const Hough2DTrajectory = lazy(() =>
+//   import("../pages/Hough2DTrajectory/Hough2DTrajectory")
+// );
 const VerifiedSuccess = lazy(() =>
   import("../pages/VerifiedSuccessPage/VerifiedSuccessPage")
 );
@@ -47,10 +47,6 @@ function AppRouter() {
             />
           }
         />
-
-        {/*
-        <Route path="/example" element={<ExampleAnalysisHome />} />
-        <Route path="/example/:id" element={<ExampleAnalysis />} /> */}
 
         <Route
           path="/example/:id"
@@ -77,9 +73,9 @@ function AppRouter() {
             <PrivateRoute redirectTo="/example" component={<DataAnalysis />} />
           }
         />
-        <Route path="/hough" element={<HoughTransform />} />
+        {/* <Route path="/hough" element={<HoughTransform />} />
         <Route path="/hough3d" element={<Hough3DTransform />} />
-        <Route path="/houghtracks" element={<Hough2DTrajectory />} />
+        <Route path="/houghtracks" element={<Hough2DTrajectory />} /> */}
         <Route path="/verified-success" element={<VerifiedSuccess />} />
         <Route path="/verified-error" element={<VerifiedError />} />
         <Route path="*" element={<Navigate to="/" />} />

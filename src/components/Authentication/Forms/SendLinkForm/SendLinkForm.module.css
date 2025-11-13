@@ -41,8 +41,12 @@
 .backWrapper {
   display: flex;
   justify-content: flex-end;
-  margin-top: 6px;
-  margin-bottom: 12px;
+}
+
+.btnsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 @media screen and (max-width: 768px) {

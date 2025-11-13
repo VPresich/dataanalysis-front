@@ -7,6 +7,7 @@ import {
   refreshUser,
   updateTheme,
   updateUserProfile,
+  resendVerify,
 } from "./operations";
 
 const initialState = {
@@ -124,6 +125,16 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+
+      .addCase(resendVerify.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(resendVerify.fulfilled, (state) => {
+        state.error = null;
+      })
+      .addCase(resendVerify.rejected, (state, action) => {
         state.error = action.payload;
       });
   },

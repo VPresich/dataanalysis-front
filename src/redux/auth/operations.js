@@ -117,3 +117,17 @@ export const updateUserProfile = createAsyncThunk(
     }
   }
 );
+
+export const resendVerify = createAsyncThunk(
+  "auth/resendVerify",
+  async (email, thunkAPI) => {
+    try {
+      const response = await axiosInst.post("auth/resend-verify", email);
+      return response.data;
+    } catch (error) {
+      const message =
+        error.response?.data?.message || error.message || "Unknown error";
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);

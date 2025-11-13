@@ -13,6 +13,7 @@ const Button = ({
   const theme = useSelector(selectTheme);
   return (
     <button
+      type="button"
       className={clsx(
         css.btn,
         css[theme],

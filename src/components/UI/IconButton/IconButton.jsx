@@ -15,7 +15,11 @@ import css from "./IconButton.module.css";
 export default function IconButton({ iconName, onClick, children }) {
   const theme = useSelector(selectTheme);
   return (
-    <button className={clsx(css.btn, css[theme])} onClick={onClick}>
+    <button
+      type="button"
+      className={clsx(css.btn, css[theme])}
+      onClick={onClick}
+    >
       <span className={css.iconContainer}>
         <svg
           className={clsx(css.icon, css[theme])}

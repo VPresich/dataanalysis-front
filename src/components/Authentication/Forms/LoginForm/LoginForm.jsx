@@ -1,12 +1,18 @@
 import { useForm, FormProvider, Controller } from "react-hook-form";
 import Button from "../../../UI/Button/Button";
-import IconButton from "../../../UI/IconButton/IconButton";
+import ReactIconButton from "../../../UI/ReactIconButton/ReactIconButton";
+import { LuKeyRound } from "react-icons/lu";
+import { LuSend } from "react-icons/lu";
 import { feedbackSchema } from "./feedbackSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./LoginForm.module.css";
 import Input from "../../../UI/Input/Input";
 
-export default function LoginForm({ handleLogin, onForgotPassword = null }) {
+export default function LoginForm({
+  onSubmit,
+  onForgotPassword,
+  onResendVerify,
+}) {
   const methods = useForm({
     resolver: yupResolver(feedbackSchema),
     defaultValues: {
@@ -17,13 +23,13 @@ export default function LoginForm({ handleLogin, onForgotPassword = null }) {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = async (values) => {
-    handleLogin(values);
+  const handleLogin = async (values) => {
+    onSubmit(values);
   };
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+      <form onSubmit={handleSubmit(handleLogin)} className={css.form}>
         <div className={css.content}>
           <div className={css.titleContainer}>
             <h3 className={css.title}>Log In</h3>
@@ -48,18 +54,23 @@ export default function LoginForm({ handleLogin, onForgotPassword = null }) {
               )}
             />
           </div>
-          {/* Forgot password link */}
-          <div className={css.forgotWrapper}>
-            <IconButton
-              iconName="icon-log-in-out"
-              theme="green"
-              onClick={onForgotPassword}
-            >
-              Forgot password?
-            </IconButton>
+          <div className={css.btnsContainer}>
+            <Button type="submit">Log in</Button>
+            <div className={css.buttons}>
+              {/* Resend verify */}
+              <div className={css.forgotWrapper}>
+                <ReactIconButton icon={LuSend} onClick={onResendVerify}>
+                  Resend verify email?
+                </ReactIconButton>
+              </div>
+              {/* Forgot password */}
+              <div className={css.forgotWrapper}>
+                <ReactIconButton icon={LuKeyRound} onClick={onForgotPassword}>
+                  Forgot password?
+                </ReactIconButton>
+              </div>
+            </div>
           </div>
-
-          <Button type="submit">Log in</Button>
         </div>
       </form>
     </FormProvider>
