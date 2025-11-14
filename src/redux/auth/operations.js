@@ -146,3 +146,17 @@ export const requestResetPwd = createAsyncThunk(
     }
   }
 );
+
+export const resetPassword = createAsyncThunk(
+  "auth/resetPassword",
+  async (resetData, thunkAPI) => {
+    try {
+      const response = await axiosInst.post("/auth/reset-pwd", resetData);
+      return response.data;
+    } catch (error) {
+      const message =
+        error.response?.data?.message || error.message || "Unknown error";
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);

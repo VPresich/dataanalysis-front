@@ -33,13 +33,20 @@
     margin: 0;
     padding: 0;
     border: none;
+    display: flex;
   }
 
   .menuIcon {
     width: 24px;
     height: 24px;
-    fill: transparent;
-    stroke: var(--primary);
+    stroke: var(--default);
+    transition: stroke 0.3s ease-in-out;
+  }
+
+  .menuIcon.default {
+    width: 24px;
+    height: 24px;
+    stroke: var(--default);
     transition: stroke 0.3s ease-in-out;
   }
 
@@ -76,7 +83,7 @@
   }
 
   .menuIcon:hover {
-    stroke: var(--default);
+    stroke: var(--default-accent);
   }
 
   .closeBtn {
@@ -99,7 +106,7 @@
     height: 24px;
     fill: transparent;
     stroke-width: 2.5px;
-    stroke: var(--primary);
+    stroke: var(--text);
   }
 }
 

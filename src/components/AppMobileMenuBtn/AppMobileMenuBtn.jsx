@@ -23,9 +23,10 @@ const AppMobileMenuBtn = () => {
           height="24"
           aria-label="burger menu button"
         >
-          <use href={`${iconsPath}#icon-menu`} />
+          <use xlinkHref={`${iconsPath}#icon-menu`} />
         </svg>
       </button>
+
       <div className={clsx(css.mobileMenu, { [css.open]: isOpen })}>
         <button className={css.closeBtn} onClick={handleClick}>
           <svg

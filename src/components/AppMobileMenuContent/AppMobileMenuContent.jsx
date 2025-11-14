@@ -19,6 +19,15 @@ const AppMobileMenuContent = ({ onMenuClick }) => {
 
   return (
     <div className={css.mobileContent}>
+      <nav className={css.nav}>
+        <NavLink className={classItem} to="/" onClick={onMenuClick}>
+          Home
+        </NavLink>
+        <NavLink className={classItem} to="/data" onClick={onMenuClick}>
+          IMMAnalysis
+        </NavLink>
+      </nav>
+      <SidebarButton handleClick={onMenuClick} />
       <div className={css.authPart}>
         {isLoggedIn ? (
           <>
@@ -26,7 +35,6 @@ const AppMobileMenuContent = ({ onMenuClick }) => {
               className={clsx(css.userName, css[theme])}
             >{`Hi, ${userName}`}</p>
             <AuthButton handleClick={onMenuClick}>Logout</AuthButton>
-            <SidebarButton handleClick={onMenuClick} />
           </>
         ) : (
           <>
@@ -36,14 +44,6 @@ const AppMobileMenuContent = ({ onMenuClick }) => {
           </>
         )}
       </div>
-      <nav className={css.nav}>
-        <NavLink className={classItem} to="/" onClick={onMenuClick}>
-          Home
-        </NavLink>
-        <NavLink className={classItem} to="/data" onClick={onMenuClick}>
-          IMMAnalysis
-        </NavLink>
-      </nav>
     </div>
   );
 };

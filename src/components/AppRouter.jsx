@@ -9,10 +9,10 @@ const DataAnalysis = lazy(() => import("../pages/DataAnalysis/DataAnalysis"));
 const DataAnalysisHome = lazy(() =>
   import("../pages/DataAnalysisHome/DataAnalysisHome")
 );
-
 const ExampleAnalysisHome = lazy(() =>
   import("../pages/ExampleAnalysisHome/ExampleAnalysisHome")
 );
+const PwdResetPage = lazy(() => import("../pages/PwdResetPage/PwdResetPage"));
 
 // const HoughTransform = lazy(() =>
 //   import("../pages/HoughTransform/HoughTransform")
@@ -71,6 +71,12 @@ function AppRouter() {
           path="/data/:id"
           element={
             <PrivateRoute redirectTo="/example" component={<DataAnalysis />} />
+          }
+        />
+        <Route
+          path="password/reset/:token"
+          element={
+            <RestrictedRoute redirectTo="/data" component={<PwdResetPage />} />
           }
         />
         {/* <Route path="/hough" element={<HoughTransform />} />
