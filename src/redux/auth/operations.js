@@ -46,7 +46,7 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 });
 
 export const refreshUser = createAsyncThunk(
-  "auth/refresh",
+  "users/refresh",
   async (_, thunkAPI) => {
     // Reading the token from the state via getState()
     const reduxState = thunkAPI.getState();
@@ -123,6 +123,21 @@ export const resendVerify = createAsyncThunk(
   async (email, thunkAPI) => {
     try {
       const response = await axiosInst.post("auth/resend-verify", email);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      const message =
+        error.response?.data?.message || error.message || "Unknown error";
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const requestResetPwd = createAsyncThunk(
+  "auth/reqResetPwd",
+  async (email, thunkAPI) => {
+    try {
+      const response = await axiosInst.post("/auth/request-reset-pwd", email);
       return response.data;
     } catch (error) {
       const message =

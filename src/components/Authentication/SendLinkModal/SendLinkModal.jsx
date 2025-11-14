@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import SendLinkForm from "../Forms/SendLinkForm/SendLinkForm";
-import { resendVerify } from "../../../redux/auth/operations";
+import { resendVerify, requestResetPwd } from "../../../redux/auth/operations";
 import {
   errNotify,
   successNotify,
@@ -12,7 +12,15 @@ export default function SendLinkModal({ isForgotPassword = true, onClose }) {
   const handleSubmit = (formData) => {
     console.log("Form Data:", formData);
     if (isForgotPassword) {
-      return;
+      dispatch(requestResetPwd(formData))
+        .unwrap()
+        .then((resp) => {
+          successNotify(resp?.message);
+          onClose && onClose();
+        })
+        .catch((err) => {
+          errNotify(err);
+        });
     } else {
       dispatch(resendVerify(formData))
         .unwrap()
