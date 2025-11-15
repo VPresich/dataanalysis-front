@@ -76,14 +76,26 @@ function AppRouter() {
         <Route
           path="password/reset/:token"
           element={
-            <RestrictedRoute redirectTo="/data" component={<PwdResetPage />} />
+            <RestrictedRoute redirectTo="/" component={<PwdResetPage />} />
+          }
+        />
+        <Route
+          path="/verified-success"
+          element={
+            <RestrictedRoute redirectTo="/" component={<VerifiedSuccess />} />
+          }
+        />
+        <Route
+          path="/verified-error"
+          element={
+            <RestrictedRoute redirectTo="/" component={<VerifiedError />} />
           }
         />
         {/* <Route path="/hough" element={<HoughTransform />} />
         <Route path="/hough3d" element={<Hough3DTransform />} />
         <Route path="/houghtracks" element={<Hough2DTrajectory />} /> */}
-        <Route path="/verified-success" element={<VerifiedSuccess />} />
-        <Route path="/verified-error" element={<VerifiedError />} />
+        {/* <Route path="/verified-success" element={<VerifiedSuccess />} /> */}
+        {/* <Route path="/verified-error" element={<VerifiedError />} /> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
