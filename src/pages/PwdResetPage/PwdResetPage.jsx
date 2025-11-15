@@ -29,6 +29,7 @@ export default function PwdResetPage() {
       .unwrap()
       .then((resp) => {
         successNotify(resp.message);
+        handleBackBtn();
       })
       .catch((error) => {
         errNotify(error);

@@ -24,10 +24,10 @@ const PwdResetPage = lazy(() => import("../pages/PwdResetPage/PwdResetPage"));
 //   import("../pages/Hough2DTrajectory/Hough2DTrajectory")
 // );
 const VerifiedSuccess = lazy(() =>
-  import("../pages/VerifiedSuccessPage/VerifiedSuccessPage")
+  import("../pages/VerifySuccessPage/VerifySuccessPage")
 );
 const VerifiedError = lazy(() =>
-  import("../pages/VerifiedErrorPage/VerifiedErrorPage")
+  import("../pages/VerifyErrorPage/VerifyErrorPage")
 );
 import PrivateRoute from "./PrivateRoute";
 import RestrictedRoute from "./RestrictedRoute";

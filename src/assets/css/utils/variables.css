@@ -16,6 +16,7 @@
 
   --green: #66a689;
   --green-accent: #91c4a7;
+  --green-blur: rgba(146, 220, 178, 0.3);
 
   --blue: #3775ae;
   --blue-accent: #93b2cd;
@@ -25,6 +26,7 @@
 
   --red: #be3f1f;
   --red-accent: #f2c0bd;
+  --red-blur: rgba(236, 101, 94, 0.3);
 
   --section-bgr: #eeeeee;
 
