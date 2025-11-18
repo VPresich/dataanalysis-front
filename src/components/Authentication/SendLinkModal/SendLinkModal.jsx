@@ -41,8 +41,8 @@ export default function SendLinkModal({ isForgotPassword = true, onClose }) {
       title={isForgotPassword ? "Reset password" : "Resend verification email"}
       text={
         isForgotPassword
-          ? "Enter your email address and we&#39;ll send you instructions to reset your password."
-          : "Enter your email below, and we&#39;ll send you a new verification link to activate your account."
+          ? "Enter your email address and we will send you instructions to reset your password."
+          : "Enter your email below, and we will send you a new verification link to activate your account."
       }
     />
   );

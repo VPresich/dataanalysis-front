@@ -96,14 +96,9 @@ export const updateUserProfile = createAsyncThunk(
           formData.append(key, value);
         });
 
-        response = await axiosInst.patch(
-          "/users/profile",
-          formData /*, {
-          headers: { "Content-Type": "multipart/form-data" },
-        }*/
-        );
+        response = await axiosInst.patch("/users/profile", formData);
       } else {
-        response = await axiosInst.patch("/users/profile", data, {
+        response = await axiosInst.patch("/users/", data, {
           headers: { "Content-Type": "application/json" },
         });
       }
