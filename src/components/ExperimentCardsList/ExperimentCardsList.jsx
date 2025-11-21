@@ -1,20 +1,25 @@
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import ExperimentCard from "../ExperimentCard/ExperimentCard";
-import { setCurrentSource } from "../../redux/datasources/slice";
+// import { setCurrentSource } from "../../redux/datasources/slice";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import { selectCurrentSource } from "../../redux/datasources/selectors";
+// import { selectCurrentSource } from "../../redux/datasources/selectors";
 
 import css from "./ExperimentCardsList.module.css";
 
 export default function ExperimentCardsList({ experiments }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
-  const currentSource = useSelector(selectCurrentSource);
+  // const currentSource = useSelector(selectCurrentSource);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
+  const { id: currentSource } = useParams();
+  console.log("currentSource param:", currentSource);
+
   const handleSelect = (source_number) => {
-    dispatch(setCurrentSource(source_number));
+    // dispatch(setCurrentSource(source_number));
     if (isLoggedIn) {
       navigate(`/data/${source_number}`);
     } else {
@@ -28,7 +33,7 @@ export default function ExperimentCardsList({ experiments }) {
         <li key={card.source_number}>
           <ExperimentCard
             experiment={card}
-            selected={currentSource === card.source_number}
+            selected={String(currentSource) === String(card.source_number)}
             onSelect={() => handleSelect(card.source_number)}
           />
         </li>

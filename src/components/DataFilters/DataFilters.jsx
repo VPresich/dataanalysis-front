@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import TimeForm from "../TimeForm/TimeForm";
 import DropDownSelector from "../UI/DropDownSelector/DropDownSelector";
 import MultySelector from "../UI/MultySelector/MultySelector";
@@ -28,7 +29,7 @@ import {
 } from "../../redux/datafilters/selectors";
 import { selectSourceNumbers } from "../../redux/datasources/selectors";
 import { selectTheme } from "../../redux/auth/selectors";
-import { getNonameDataBySource } from "../../redux/data/operations";
+import { getFilteredData } from "../../redux/data/operations";
 import { updateTrackNumbers } from "../../redux/datafilters/slice";
 import processData from "../../auxiliary/processData";
 import {
@@ -56,20 +57,12 @@ const DataFilters = () => {
   const sourceNumbers = useSelector(selectSourceNumbers);
   const sourceNumber = useSelector(selectSourceNum);
 
+  const location = useLocation();
+  const hideTimeForm =
+    location.pathname === "/example" ||
+    /^\/example\/\d+$/.test(location.pathname);
+
   const handleSourceChange = async (sourceNumber) => {
-    try {
-      const data = await dispatch(
-        getNonameDataBySource({ sourceNumber })
-      ).unwrap();
-
-      if (isDevMode) successNotify("Success loading Noname data by source");
-
-      const filteredTracks = processData(data, 5);
-      dispatch(updateTrackNumbers(filteredTracks));
-    } catch (error) {
-      if (isDevMode) errNotify("Error while loading or processing Noname data");
-      console.error(error);
-    }
     dispatch(saveSourceNumber(sourceNumber));
   };
 
@@ -81,8 +74,26 @@ const DataFilters = () => {
     dispatch(saveImmConsistentMaxValue(value));
   };
 
-  const handleChangedTime = (value) => {
+  const handleChangedTime = async (value) => {
     dispatch(saveTime(value));
+    try {
+      const data = await dispatch(
+        getFilteredData({
+          sourceNumber,
+          startTime: value.startTime,
+          endTime: value.endTime,
+        })
+      ).unwrap();
+
+      if (isDevMode) successNotify("Success loading filtered data by source");
+
+      const filteredTracks = processData(data, 5);
+      dispatch(updateTrackNumbers(filteredTracks));
+    } catch (error) {
+      if (isDevMode)
+        errNotify("Error while loading or processing filtered data");
+      console.error(error);
+    }
   };
 
   const handleReset = () => {
@@ -143,13 +154,15 @@ const DataFilters = () => {
         />
       </div>
 
-      <div className={css.timeFormWrapper}>
-        <p className={clsx(css.label, css[theme])}>Time:</p>
-        <TimeForm
-          initialValues={{ startTime, endTime }}
-          onChange={handleChangedTime}
-        />
-      </div>
+      {!hideTimeForm && (
+        <div className={css.timeFormWrapper}>
+          <p className={clsx(css.label, css[theme])}>Time:</p>
+          <TimeForm
+            initialValues={{ startTime, endTime }}
+            onChange={handleChangedTime}
+          />
+        </div>
+      )}
       <Button onClick={handleReset} btnAuxStyles={css.btnReset}>
         Reset
       </Button>

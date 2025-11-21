@@ -25,7 +25,6 @@ export default function DataAnalysisHome() {
           if (isDevMode) errNotify("No USER sources found");
           return;
         }
-        console.log("sourceNumber", sources[0].source_number);
       } catch {
         if (isDevMode) errNotify("Error loading USER sources");
       }

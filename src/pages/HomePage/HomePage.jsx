@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import clsx from "clsx";
 import { selectTheme } from "../../redux/auth/selectors";
+import { closeSidebar } from "../../redux/sidebar/slice";
 import DocumentTitle from "../../components/DocumentTitle";
 import Button from "../../components/UI/Button/Button";
 import imgDefaultUrl from "../../assets/img/home/default_block.webp";
@@ -45,6 +46,7 @@ export default function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    dispatch(closeSidebar());
     const queryParams = new URLSearchParams(location.search);
     const token = queryParams.get("token");
 

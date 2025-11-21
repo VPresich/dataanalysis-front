@@ -6,7 +6,7 @@ export const getUserSources = createAsyncThunk(
   "sources/getUserSources",
   async (_, thunkAPI) => {
     try {
-      const response = await axiosInst.get("/sources");
+      const response = await axiosInst.get("/sources/");
       return response.data;
     } catch (error) {
       const message =
@@ -38,7 +38,7 @@ export const uploadData = createAsyncThunk(
       Object.entries(data).forEach(([key, value]) => {
         formData.append(key, value);
       });
-      const response = await axiosInst.post("/sources", formData);
+      const response = await axiosInst.post("/sources/", formData);
       return response.data;
     } catch (error) {
       const message =
