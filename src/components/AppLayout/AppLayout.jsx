@@ -1,15 +1,14 @@
-import AppBar from "../AppBar/AppBar";
 import SideBar from "../SideBar/SideBar";
-import Loader from "../UI/Loader/Loader";
+import { Outlet } from "react-router-dom";
 import css from "./AppLayout.module.css";
 
-export default function AppLayout({ children }) {
+export default function AppLayout() {
   return (
     <div className={css.container}>
-      <Loader />
-      <AppBar />
       <SideBar />
-      <div className={css.content}>{children}</div>
+      <div className={css.content}>
+        <Outlet />
+      </div>
     </div>
   );
 }

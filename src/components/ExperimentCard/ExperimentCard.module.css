@@ -19,6 +19,10 @@
   transform: translateY(-2px);
 }
 
+.card.default {
+  background-color: var(--default);
+}
+
 .card.green {
   background-color: var(--green);
 }
@@ -163,28 +167,25 @@
 .selected {
   transform: translateY(-1px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
 }
 
 .selected.card.green {
   background-color: var(--green-accent);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card.blue.selected {
   background-color: var(--blue-accent);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card.red.selected {
   background-color: var(--red-accent);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card.yellow.selected {
   background-color: var(--yellow-accent);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card.default.selected {
+  background-color: var(--default-accent);
 }

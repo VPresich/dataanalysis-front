@@ -12,7 +12,6 @@ const sourcesSlice = createSlice({
   name: "sources",
   initialState: {
     items: [],
-    currentSource: null,
     isLoading: false,
     error: null,
   },
@@ -26,14 +25,6 @@ const sourcesSlice = createSlice({
 
     setUploadProgress(state, action) {
       state.uploadProgress = action.payload;
-    },
-
-    setCurrentSource(state, action) {
-      state.currentSource = action.payload;
-    },
-
-    clearCurrentSource(state) {
-      state.currentSource = null;
     },
   },
 
@@ -126,15 +117,9 @@ const sourcesSlice = createSlice({
         state.items = [];
         state.error = null;
         state.isLoading = false;
-        state.currentSource = null;
       });
   },
 });
 
-export const {
-  resetDataState,
-  setUploadProgress,
-  setCurrentSource,
-  clearCurrentSource,
-} = sourcesSlice.actions;
+export const { resetDataState, setUploadProgress } = sourcesSlice.actions;
 export default sourcesSlice.reducer;

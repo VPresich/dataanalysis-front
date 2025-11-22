@@ -11,7 +11,6 @@ const dataFiltersSlice = createSlice({
     immConsistent: "All",
     immConsistentValues: generateImmConsistentValues(),
     immConsistentMaxValue: "0.0",
-    sourceNumber: null,
     startTime: "",
     endTime: "",
     is3D: false,
@@ -23,14 +22,6 @@ const dataFiltersSlice = createSlice({
 
     saveSelectedTrackNums: (state, action) => {
       state.selectedTrackNums = action.payload;
-    },
-
-    saveSensorNum: (state, action) => {
-      state.sensorNum = action.payload;
-    },
-
-    saveSourceNumber: (state, action) => {
-      state.sourceNumber = action.payload;
     },
 
     saveImmConsistent: (state, action) => {
@@ -59,7 +50,6 @@ const dataFiltersSlice = createSlice({
     resetDataFilters: (state) => {
       state.trackNum = "All";
       state.immConsistent = "All";
-      state.sourceNumber = null;
       state.immConsistentMaxValue = "0.0";
       state.startTime = "";
       state.endTime = "";
@@ -70,13 +60,11 @@ const dataFiltersSlice = createSlice({
 export const {
   saveTrackNum,
   saveSelectedTrackNums,
-  saveSensorNum,
   saveImmConsistent,
   saveImmConsistentMaxValue,
   updateTrackNumbers,
   saveTime,
   setIs3D,
-  saveSourceNumber,
   resetDataFilters,
 } = dataFiltersSlice.actions;
 export default dataFiltersSlice.reducer;

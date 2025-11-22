@@ -4,7 +4,8 @@ import { Toaster } from "react-hot-toast";
 import { resetRefreshState } from "../redux/auth/slice";
 import { refreshUser } from "../redux/auth/operations";
 import AppRouter from "./AppRouter";
-import AppLayout from "./AppLayout/AppLayout";
+import AppBar from "./AppBar/AppBar";
+import Loader from "./UI/Loader/Loader";
 import {
   errNotify,
   successNotify,
@@ -32,9 +33,9 @@ export default function App() {
 
   return (
     <>
-      <AppLayout>
-        <AppRouter />
-      </AppLayout>
+      <Loader />
+      <AppBar />
+      <AppRouter />
       <Toaster position="top-right" reverseOrder={false} />
     </>
   );

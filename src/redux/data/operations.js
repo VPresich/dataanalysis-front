@@ -35,7 +35,6 @@ export const getNonameDataBySource = createAsyncThunk(
 export const getDataBySource = createAsyncThunk(
   "data/getDataBySource",
   async (sourceNumber, thunkAPI) => {
-    console.log("SOURCE_NUMBER", sourceNumber);
     try {
       const response = await axiosInst.get(`/data/${Number(sourceNumber)}`);
       return response.data;
@@ -54,7 +53,9 @@ export const getFilteredData = createAsyncThunk(
       const params = {};
       if (startTime) params.startTime = startTime;
       if (endTime) params.endTime = endTime;
-      const response = await axiosInst.get(`data/${sourceNumber}`, { params });
+      const response = await axiosInst.get(`data/${sourceNumber}/filter`, {
+        params,
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

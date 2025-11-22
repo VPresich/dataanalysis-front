@@ -5,6 +5,7 @@
   padding-right: 60px;
   padding-top: 92px;
   padding-bottom: 92px;
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: 12px;

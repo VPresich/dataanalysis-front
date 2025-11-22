@@ -5,7 +5,6 @@ import clsx from "clsx";
 import DocumentTitle from "../../components/DocumentTitle";
 import DataTable from "../../components/DataTable/DataTable";
 import DataFilters from "../../components/DataFilters/DataFilters";
-// import { selectCurrentSource } from "../../redux/datasources/selectors";
 import ShowGraphModal from "../../components/ShowGraphModal/ShowGraphModal";
 import processData from "../../auxiliary/processData";
 import { updateTrackNumbers } from "../../redux/datafilters/slice";
@@ -69,7 +68,6 @@ export default function DataAnalysis() {
   return (
     <>
       <DocumentTitle>Example Analysis</DocumentTitle>
-
       <div className={css.container}>
         <div className={css.auxLine}>
           <DataFilters />

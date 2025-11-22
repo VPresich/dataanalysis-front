@@ -25,7 +25,6 @@ const EditExperimentForm = ({ experiment, handleExperimentSave }) => {
       values,
       methods.formState.defaultValues
     );
-    console.log("EditExperimentForm", values, changedFields);
     handleExperimentSave && handleExperimentSave(changedFields);
   };
 

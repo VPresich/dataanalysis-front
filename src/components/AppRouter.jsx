@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import AppLayout from "./AppLayout/AppLayout";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const ExampleAnalysis = lazy(() =>
@@ -36,67 +37,72 @@ function AppRouter() {
   return (
     <Suspense>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<HomePage />} />
 
-        <Route
-          path="/example"
-          element={
-            <RestrictedRoute
-              redirectTo="/data"
-              component={<ExampleAnalysisHome />}
-            />
-          }
-        />
+          <Route
+            path="/example"
+            element={
+              <RestrictedRoute
+                redirectTo="/data"
+                component={<ExampleAnalysisHome />}
+              />
+            }
+          />
 
-        <Route
-          path="/example/:id"
-          element={
-            <RestrictedRoute
-              redirectTo="/data"
-              component={<ExampleAnalysis />}
-            />
-          }
-        />
+          <Route
+            path="/example/:id"
+            element={
+              <RestrictedRoute
+                redirectTo="/data"
+                component={<ExampleAnalysis />}
+              />
+            }
+          />
 
-        <Route
-          path="/data"
-          element={
-            <PrivateRoute
-              redirectTo="/example"
-              component={<DataAnalysisHome />}
-            />
-          }
-        />
-        <Route
-          path="/data/:id"
-          element={
-            <PrivateRoute redirectTo="/example" component={<DataAnalysis />} />
-          }
-        />
-        <Route
-          path="password/reset/:token"
-          element={
-            <RestrictedRoute redirectTo="/" component={<PwdResetPage />} />
-          }
-        />
-        <Route
-          path="/verified-success"
-          element={
-            <RestrictedRoute redirectTo="/" component={<VerifiedSuccess />} />
-          }
-        />
-        <Route
-          path="/verified-error"
-          element={
-            <RestrictedRoute redirectTo="/" component={<VerifiedError />} />
-          }
-        />
-        {/* <Route path="/hough" element={<HoughTransform />} />
+          <Route
+            path="/data"
+            element={
+              <PrivateRoute
+                redirectTo="/example"
+                component={<DataAnalysisHome />}
+              />
+            }
+          />
+          <Route
+            path="/data/:id"
+            element={
+              <PrivateRoute
+                redirectTo="/example"
+                component={<DataAnalysis />}
+              />
+            }
+          />
+          <Route
+            path="password/reset/:token"
+            element={
+              <RestrictedRoute redirectTo="/" component={<PwdResetPage />} />
+            }
+          />
+          <Route
+            path="/verified-success"
+            element={
+              <RestrictedRoute redirectTo="/" component={<VerifiedSuccess />} />
+            }
+          />
+          <Route
+            path="/verified-error"
+            element={
+              <RestrictedRoute redirectTo="/" component={<VerifiedError />} />
+            }
+          />
+          {/* <Route path="/hough" element={<HoughTransform />} />
         <Route path="/hough3d" element={<Hough3DTransform />} />
         <Route path="/houghtracks" element={<Hough2DTrajectory />} /> */}
-        {/* <Route path="/verified-success" element={<VerifiedSuccess />} /> */}
-        {/* <Route path="/verified-error" element={<VerifiedError />} /> */}
-        <Route path="*" element={<Navigate to="/" />} />
+          {/* <Route path="/verified-success" element={<VerifiedSuccess />} /> */}
+          {/* <Route path="/verified-error" element={<VerifiedError />} /> */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
       </Routes>
     </Suspense>
   );

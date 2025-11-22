@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import TimeForm from "../TimeForm/TimeForm";
 import DropDownSelector from "../UI/DropDownSelector/DropDownSelector";
 import MultySelector from "../UI/MultySelector/MultySelector";
@@ -13,7 +13,6 @@ import {
   saveSelectedTrackNums,
   resetDataFilters,
   setIs3D,
-  saveSourceNumber,
   saveTime,
 } from "../../redux/datafilters/slice";
 import {
@@ -21,12 +20,12 @@ import {
   selectImmConsistent,
   selectImmConsistentValues,
   selectImmConsistentMaxValue,
-  selectSourceNum,
   selectStartTime,
   selectEndTime,
   selectSelectedTrackNums,
   selectIs3D,
 } from "../../redux/datafilters/selectors";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { selectSourceNumbers } from "../../redux/datasources/selectors";
 import { selectTheme } from "../../redux/auth/selectors";
 import { getFilteredData } from "../../redux/data/operations";
@@ -36,13 +35,13 @@ import {
   errNotify,
   successNotify,
 } from "../../auxiliary/notification/notification";
-
 import css from "./DataFilters.module.css";
 
 const isDevMode = import.meta.env.VITE_DEVELOPED_MODE === "true";
 
 const DataFilters = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const theme = useSelector(selectTheme);
   const selectedTrackNums = useSelector(selectSelectedTrackNums);
   const trackNumbersForMultySelect = useSelector(
@@ -55,7 +54,9 @@ const DataFilters = () => {
   const endTime = useSelector(selectEndTime);
   const is3D = useSelector(selectIs3D);
   const sourceNumbers = useSelector(selectSourceNumbers);
-  const sourceNumber = useSelector(selectSourceNum);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const { id: sourceNumber } = useParams();
 
   const location = useLocation();
   const hideTimeForm =
@@ -63,7 +64,11 @@ const DataFilters = () => {
     /^\/example\/\d+$/.test(location.pathname);
 
   const handleSourceChange = async (sourceNumber) => {
-    dispatch(saveSourceNumber(sourceNumber));
+    if (isLoggedIn) {
+      navigate(`/data/${sourceNumber}`);
+    } else {
+      navigate(`/example/${sourceNumber}`);
+    }
   };
 
   const handleImmConsistent = (value) => {
@@ -98,7 +103,6 @@ const DataFilters = () => {
 
   const handleReset = () => {
     dispatch(resetDataFilters());
-    dispatch(saveSourceNumber(sourceNumber));
   };
 
   const handleSelectionChange = (options) => {
@@ -129,8 +133,8 @@ const DataFilters = () => {
           options={immConsistentValues}
           selectedOption={immConsistent}
           onChange={handleImmConsistent}
-          btnCSSClass={css.btnTrackNum}
-          dropdownCSSClass={css.dropdownTrackNum}
+          btnCSSClass={css.btnDropDown}
+          dropdownCSSClass={css.listDropDown}
         />
       </div>
       <div className={css.searchWrapper}>
@@ -149,8 +153,8 @@ const DataFilters = () => {
           options={sourceNumbers}
           selectedOption={sourceNumber}
           onChange={handleSourceChange}
-          btnCSSClass={css.btnTrackNum}
-          dropdownCSSClass={css.dropdownTrackNum}
+          btnCSSClass={css.btnDropDown}
+          dropdownCSSClass={css.listDropDown}
         />
       </div>
 

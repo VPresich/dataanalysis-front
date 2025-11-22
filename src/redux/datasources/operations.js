@@ -65,8 +65,6 @@ export const deleteSourceByNumber = createAsyncThunk(
 export const updateSourceByNumber = createAsyncThunk(
   "sources/updateSourceByNumber",
   async ({ sourceNumber, values }, thunkAPI) => {
-    console.log("THUNK", sourceNumber);
-    console.log("THUNK", values);
     try {
       const response = await axiosInst.patch(
         `/sources/${sourceNumber}`,

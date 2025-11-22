@@ -57,6 +57,7 @@
   background-color: var(--red-accent);
   transform: translateY(-1px);
 }
+
 .sidebarBtn:disabled {
   background-color: #cccccc;
   color: #7a7979;
