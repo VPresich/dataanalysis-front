@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import { getPointColor } from "../../auxiliary/getPointColor";
@@ -194,18 +194,18 @@ const LineGraph = ({ data }) => {
   };
 
   return (
-    <React.Fragment>
+    <div className={css.container}>
       <Button onClick={resetZoom} btnAuxStyles={css.btnReset}>
         Reset zoom
       </Button>
 
       <Line
-        className={css.container}
+        className={css.graphContainer}
         ref={chartRef}
         data={chartData}
         options={options}
       />
-    </React.Fragment>
+    </div>
   );
 };
 

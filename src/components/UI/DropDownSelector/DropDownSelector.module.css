@@ -18,11 +18,11 @@
   border: none;
   cursor: pointer;
   position: relative;
-  transition: border-color 500ms ease-in-out;
+  transition: transform 0.2s ease;
 }
 
 .btn:hover {
-  border-color: var(--default);
+  transform: translateY(-1px);
 }
 
 .btn .text {

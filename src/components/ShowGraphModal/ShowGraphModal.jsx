@@ -22,7 +22,7 @@ export default function ShowGraphModal({ dataForTrack }) {
       </Button>
       {showGraph && (
         <ModalWrapper onClose={handleClose} isGraph={true}>
-          <GraphComponent data={dataForTrack} />
+          <GraphComponent dataForTrack={dataForTrack} />
         </ModalWrapper>
       )}
     </>
