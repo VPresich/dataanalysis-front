@@ -14,7 +14,11 @@ import {
   selectError,
 } from "../../redux/data/selectors";
 import { selectTheme } from "../../redux/auth/selectors";
-import { getDataBySource } from "../../redux/data/operations";
+import {
+  selectStartTime,
+  selectEndTime,
+} from "../../redux/datafilters/selectors";
+import { getFilteredData } from "../../redux/data/operations";
 import { getUserSources } from "../../redux/datasources/operations";
 import {
   errNotify,
@@ -29,6 +33,8 @@ export default function DataAnalysis() {
   const error = useSelector(selectError);
   const dataForTrack = useSelector(selectFilteredData);
   const theme = useSelector(selectTheme);
+  const startTime = useSelector(selectStartTime);
+  const endTime = useSelector(selectEndTime);
 
   const dispatch = useDispatch();
   const { id: sourceNumber } = useParams();
@@ -46,7 +52,13 @@ export default function DataAnalysis() {
         if (isDevMode) errNotify("Error loading USER sources");
       }
       try {
-        const data = await dispatch(getDataBySource(sourceNumber)).unwrap();
+        const data = await dispatch(
+          getFilteredData({
+            sourceNumber,
+            startTime,
+            endTime,
+          })
+        ).unwrap();
         if (!data || (Array.isArray(data) && data.length === 0)) {
           if (isDevMode) errNotify("No User data found");
           return;
@@ -63,7 +75,7 @@ export default function DataAnalysis() {
     };
 
     initApp();
-  }, [dispatch, sourceNumber]);
+  }, [dispatch, sourceNumber, startTime, endTime]);
 
   return (
     <>

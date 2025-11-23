@@ -28,16 +28,7 @@ import {
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { selectSourceNumbers } from "../../redux/datasources/selectors";
 import { selectTheme } from "../../redux/auth/selectors";
-import { getFilteredData } from "../../redux/data/operations";
-import { updateTrackNumbers } from "../../redux/datafilters/slice";
-import processData from "../../auxiliary/processData";
-import {
-  errNotify,
-  successNotify,
-} from "../../auxiliary/notification/notification";
 import css from "./DataFilters.module.css";
-
-const isDevMode = import.meta.env.VITE_DEVELOPED_MODE === "true";
 
 const DataFilters = () => {
   const dispatch = useDispatch();
@@ -81,24 +72,6 @@ const DataFilters = () => {
 
   const handleChangedTime = async (value) => {
     dispatch(saveTime(value));
-    try {
-      const data = await dispatch(
-        getFilteredData({
-          sourceNumber,
-          startTime: value.startTime,
-          endTime: value.endTime,
-        })
-      ).unwrap();
-
-      if (isDevMode) successNotify("Success loading filtered data by source");
-
-      const filteredTracks = processData(data, 5);
-      dispatch(updateTrackNumbers(filteredTracks));
-    } catch (error) {
-      if (isDevMode)
-        errNotify("Error while loading or processing filtered data");
-      console.error(error);
-    }
   };
 
   const handleReset = () => {
