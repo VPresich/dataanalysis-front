@@ -12,6 +12,7 @@ const MultySelector = ({
   optionCSSClass,
   dropdownCSSClass,
   btnCSSClass,
+  iconCSSClass,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -51,7 +52,7 @@ const MultySelector = ({
             : btnLabel}
         </span>
         <div className={clsx(css.iconContainer)}>
-          <svg className={clsx(css.icon)} aria-label="arrow icon">
+          <svg className={clsx(css.icon, iconCSSClass)} aria-label="arrow icon">
             <use href={`${iconsPath}#icon-dropdown`} />
           </svg>
         </div>
