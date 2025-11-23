@@ -9,7 +9,7 @@ import Button from "../UI/Button/Button";
 import UploadFileButton from "../UploadFileButton/UploadFileButton";
 import { selectSourceNumbers } from "../../redux/datasources/selectors";
 import { createFeedbackSchema } from "./createFeedbackSchema";
-import iconsPath from "../../assets/img/sprite.svg";
+import iconsPath from "../../assets/img/icons.svg";
 import css from "./AddExperimentForm.module.css";
 
 const AddExperimentForm = ({ onSubmitForm }) => {

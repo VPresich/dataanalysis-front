@@ -10,7 +10,7 @@ import UploadFileButton from "../../../UploadFileButton/UploadFileButton";
 import { feedbackSchema } from "./feedbackSchema";
 import { getChangedFields } from "../../../../auxiliary/getChangedFields";
 import { selectUser } from "../../../../redux/auth/selectors";
-import iconsPath from "../../../../assets/img/sprite.svg";
+import iconsPath from "../../../../assets/img/icons.svg";
 import css from "./UserSettingsForm.module.css";
 
 const UserSettingsForm = ({ handleUserSave }) => {
