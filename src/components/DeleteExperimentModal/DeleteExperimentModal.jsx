@@ -1,7 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
 import ModalWrapper from "../UI/ModalWrapper/ModalWrapper.jsx";
 import DeleteApproveForm from "../DeleteApproveForm/DeleteApproveForm.jsx";
 import { deleteSourceByNumber } from "../../redux/datasources/operations.js";
+import { selectNextSourceNumber } from "../../redux/datasources/selectors.js";
 import {
   errNotify,
   successNotify,
@@ -11,6 +13,9 @@ const isDevMode = import.meta.env.VITE_DEVELOPED_MODE === "true";
 
 export default function DeleteExperimentModal({ onClose, sourceNumber }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id: currentSource } = useParams();
+  const nextSourceNumber = useSelector(selectNextSourceNumber(sourceNumber));
 
   const handleDeleteExperiment = () => {
     dispatch(deleteSourceByNumber(sourceNumber))
@@ -18,6 +23,14 @@ export default function DeleteExperimentModal({ onClose, sourceNumber }) {
       .then(() => {
         if (isDevMode) {
           successNotify(`Deleting experiment ${sourceNumber} was successful`);
+        }
+
+        if (String(currentSource) === String(sourceNumber)) {
+          if (nextSourceNumber) {
+            navigate(`/data/${nextSourceNumber}`);
+          } else {
+            navigate(`/data`);
+          }
         }
         onClose?.();
       })
