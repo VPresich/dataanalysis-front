@@ -1,55 +1,57 @@
-The application was developed for a company that provides online language lessons.
-It consists of a database, an HTTP server with various functions, 
-and a front-end part for a convenient user interface.
+# Data Analysis App (Frontend)
 
-Frontend:
+Web application for working with user data.
+Allows authorized users to upload files with a defined data structure,
+filter them, and view the data in tables and charts. Demo data is available for non-logged-in users.
 
-The frontend is implemented using React with the Redux Toolkit for state management and react-router-dom for routing. The interface adapts to screens from 320px to 1440px, using a responsive layout based on the design.
+## Features
 
-Main Pages:
+- User authentication and registration
+- Login via email/password or Google account
+- Change password and edit user profile
+- Upload and manage data files
+- View and filter uploaded data sources
+- Display data in tables and charts
+- Demo data available for non-logged-in users
 
-Home: Highlights company benefits and includes a "Getting Started" link leading to the "Teachers" page.
-Teachers: Displays a list of teachers with filters for language, student level, and price.
-Favorites: A private page for teachers added to "favorites."
+## Technologies
 
-Authorization forms are implemented using react-hook-form and yup. A feature for booking a trial lesson is included.
+- React + JavaScript
+- React Router for routing
+- Axios for API requests
+- Chart.js / Recharts for charts
+- SCSS / CSS modules for styling
 
-Authorization:
+Works with a FastAPI + PostgreSQL backend, or alternatively with Node.js + MongoDB backend.
 
-Users can register, log in (including via Google accounts), retrieve user data, and log out. Certain features are restricted for unauthorized users.
+## Installation and Running
 
-Backend
+1. Clone the repository or copy the project to a new folder.
+2. Install dependencies:
 
-Technologies:
-Server: Node.js with Express.js
-Database: MongoDB with Mongoose
-Image Storage: Cloudinary
-Email Sending: SendGrid
+```bash
+npm install
+Create a .env file with the API URL, for example:
 
-Functionality:
+ini
+Copy code
+VITE_API_URL=https://your-api-url.com
+Start the development server:
 
-User registration and login
-Profile and avatar updates
-Uploading files in form-data format with URL storage in the database
-Sending support emails
-Retrieving and filtering teachers with pagination
-Managing favorite teachers
-Securing routes with JWT
+bash
+Copy code
+npm run dev
+Open your browser at:
 
-Main Endpoints:
+arduino
+Copy code
+http://localhost:5173
 
-POST /users/register: User registration
-POST /users/login: Login
-POST /users/avatar: Upload avatar
-GET /teachers: Retrieve a list of teachers
-POST /favorites/:teacherId: Add to favorites
-DELETE /favorites/:teacherId: Remove from favorites
 
-Deployment
+## Usage
 
-HTTP Server:  https://teachers-rest-api.onrender.com   on Render.com 
-Swagger:  https://teachers-rest-api.onrender.com/api/docs
-Frontend:  https://teachers-puce.vercel.app/  on Vercel
-
-This application allows users to easily find and interact with online language teachers.
-
+Register in the app (optional for demo data).
+Log in or use demo data.
+Upload a data file or select a demo data source.
+Apply filters and view data in tables or charts.
+Manage data sources: delete, update, or view details.
