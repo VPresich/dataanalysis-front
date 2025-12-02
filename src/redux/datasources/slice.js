@@ -63,7 +63,7 @@ const sourcesSlice = createSlice({
         state.error = null;
       })
       .addCase(uploadData.fulfilled, (state, action) => {
-        const newSource = action.payload.dataSource;
+        const newSource = action.payload.source;
         const exists = state.items.some((s) => s._id === newSource._id);
         if (!exists) state.items.push(newSource);
         state.isLoading = false;
@@ -81,7 +81,7 @@ const sourcesSlice = createSlice({
       .addCase(deleteSourceByNumber.fulfilled, (state, action) => {
         state.isLoading = false;
         const index = state.items.findIndex(
-          (source) => source._id === action.payload.deletedSource._id
+          (source) => source._id === action.payload.source._id
         );
         if (index !== -1) {
           state.items.splice(index, 1);
@@ -99,7 +99,7 @@ const sourcesSlice = createSlice({
       })
       .addCase(updateSourceByNumber.fulfilled, (state, action) => {
         state.isLoading = false;
-        const updatedSource = action.payload.updatedSource;
+        const updatedSource = action.payload.source;
         const index = state.items.findIndex(
           (source) => source._id === updatedSource._id
         );

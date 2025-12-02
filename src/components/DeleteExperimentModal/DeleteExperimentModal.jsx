@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import ModalWrapper from "../UI/ModalWrapper/ModalWrapper.jsx";
-import DeleteApproveForm from "../DeleteApproveForm/DeleteApproveForm.jsx";
-import { deleteSourceByNumber } from "../../redux/datasources/operations.js";
-import { selectNextSourceNumber } from "../../redux/datasources/selectors.js";
+import ModalWrapper from "../UI/ModalWrapper/ModalWrapper";
+import DeleteApproveForm from "../DeleteApproveForm/DeleteApproveForm";
+import { deleteSourceByNumber } from "../../redux/datasources/operations";
+import { selectNextSourceNumber } from "../../redux/datasources/selectors";
 import {
   errNotify,
   successNotify,
