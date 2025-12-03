@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getDataBySource, getFilteredData } from "./operations";
+import { logOut } from "../auth/operations";
 import { getNonameData, getNonameDataBySource } from "./operations";
 
 const analysisSlice = createSlice({
@@ -73,6 +74,12 @@ const analysisSlice = createSlice({
       .addCase(getFilteredData.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+        state.error = null;
+        state.isLoading = false;
       });
   },
 });

@@ -1,8 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 
 export const selectTrackNum = (state) => state.datafilters.trackNum;
-export const selectSensorNum = (state) => state.datafilters.sensorNum;
-export const selectSourceNum = (state) => state.datafilters.sourceNumber;
 export const selectTrackNumbers = (state) =>
   state.datafilters.trackNumbers || [];
 
