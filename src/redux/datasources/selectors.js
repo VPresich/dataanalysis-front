@@ -1,7 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 
 export const selectSources = (state) => state.sources.items;
-export const selectIsLoading = (state) => state.sources.selectIsLoading;
+export const selectIsLoading = (state) => state.sources.isLoading;
 export const selectUploadProgress = (state) => state.sources.uploadProgress;
 
 export const selectSourceNumbers = createSelector([selectSources], (sources) =>
