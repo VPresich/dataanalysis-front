@@ -24,7 +24,7 @@ export default function App() {
       } catch {
         if (isDevMode) errNotify("Error refresh");
       } finally {
-        dispatch(resetRefreshState());
+        dispatch(resetRefreshState(false));
       }
     };
 
